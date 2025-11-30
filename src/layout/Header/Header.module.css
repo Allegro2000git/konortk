@@ -1,0 +1,32 @@
+@import url("@/app/styles/variables.css");
+
+.header {
+    padding: 0 1.5rem;
+    background-color: var(--color-gray-200);
+    border-bottom: 1px solid var(--color-gray-350);
+}
+
+.container {
+    display: flex;
+    grid-area: header;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1250px;
+    height: 75px;
+    margin: 0 auto;
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    color: var(--color-body-text)
+}
+
+/* .activeLink {
+
+} */
+
+.logo {
+    max-width: 250px;
+}
