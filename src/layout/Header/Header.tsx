@@ -1,5 +1,5 @@
 import s from "./Header.module.css";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { Path } from "@/app/providers/routes/Routing";
 import logo from "@/assets/vector/logo.svg";
 
@@ -15,7 +15,9 @@ export const Header = () => {
   return (
     <header className={s.header}>
       <div className={s.container}>
-        <img src={logo} alt="Logo" className={s.logo} />
+        <Link to={Path.Main}>
+          <img src={logo} alt="Logo" className={s.logo} />
+        </Link>
         <nav>
           <ul className={s.list}>
             {navItems.map((item) => (

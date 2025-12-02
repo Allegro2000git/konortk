@@ -28,5 +28,9 @@
 } */
 
 .logo {
-    max-width: 250px;
+    width: 10vw;
+    height: 10vh;
+    margin-left: 0;
+    margin-right: 0;
+    object-fit: contain;
 }

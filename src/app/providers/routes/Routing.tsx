@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router";
 import { PageNotFound } from "@/PageNotFound";
 import { Favorites } from "@/Favorites";
-import { Search } from "@/Search";
 import { FilteredMovies } from "@/FilteredMovies";
 import { Movies } from "@/Movies";
-import { MainPage } from "@/MainPage";
+import { MainPage } from "@/features/main/ui/MainPage";
 import { Layout } from "@/layout";
+import { Search } from "@/features/search/ui/Search";
 
 export const Path = {
   Main: "/",

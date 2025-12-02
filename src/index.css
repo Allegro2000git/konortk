@@ -47,6 +47,7 @@ input,
 label {
     border: none;
     line-height: 1.2;
+    margin: 0;
 }
 
 /* Balance text wrapping on headings */
@@ -61,13 +62,6 @@ h4 {
 a {
     color: currentcolor;
     text-decoration: none;
-}
-
-/* Make images easier to work with */
-img,
-picture {
-    display: block;
-    max-width: 100%;
 }
 
 /* Inherit fonts for inputs and buttons */

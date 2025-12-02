@@ -1,0 +1,7 @@
+.cover {
+    width: 100vw;
+    height: 70vh;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    background-size: cover;
+}
