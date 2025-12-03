@@ -2,8 +2,14 @@ import s from "./Header.module.css";
 import { Link, NavLink } from "react-router";
 import { Path } from "@/app/providers/routes/Routing";
 import logo from "@/assets/vector/logo.svg";
+import { changeThemeModeAC, selectThemeMode } from "@/app/providers/theme/model/theme-slice";
+import { useAppDispatch } from "@/shared/hooks/useAppDispatch";
+import { useAppSelector } from "@/shared/hooks/useAppSelector";
 
 export const Header = () => {
+  const themeMode = useAppSelector(selectThemeMode);
+  const dispatch = useAppDispatch();
+
   const navItems = [
     { to: Path.Main, label: "Main" },
     { to: Path.Movies, label: "Category movies" },
@@ -12,8 +18,14 @@ export const Header = () => {
     { to: Path.Favorites, label: "Favorites" },
   ];
 
+  const changeMode = () => {
+    const newTheme = themeMode === "dark" ? "light" : "dark";
+    dispatch(changeThemeModeAC({ themeMode: newTheme }));
+    document.body.className = newTheme;
+  };
+
   return (
-    <header className={s.header}>
+    <header>
       <div className={s.container}>
         <Link to={Path.Main}>
           <img src={logo} alt="Logo" className={s.logo} />
@@ -22,14 +34,16 @@ export const Header = () => {
           <ul className={s.list}>
             {navItems.map((item) => (
               <li key={item.to}>
-                <NavLink to={item.to} className={({ isActive }) => `link ${isActive ? s.activeLink : ""}`}>
+                <NavLink to={item.to} className={s.link}>
                   {item.label}
                 </NavLink>
               </li>
             ))}
           </ul>
         </nav>
-        <button>Theme</button>
+        <button className={s.btntheme} onClick={changeMode}>
+          {themeMode === "light" ? "🌙" : "☀️"}
+        </button>
       </div>
     </header>
   );

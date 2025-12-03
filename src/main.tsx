@@ -3,7 +3,7 @@ import "./index.css";
 import { App } from "@/app/ui/App.tsx";
 import { BrowserRouter } from "react-router";
 import { Provider } from "react-redux";
-import { store } from "@/app/model/store";
+import { store } from "@/app/providers/store";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>

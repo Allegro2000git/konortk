@@ -1,12 +1,12 @@
 :root {
-    /*
-    * Colors
-    */
     --color-white: #f8fafc;
     --color-white-rgb: 248 250 252;
     --color-neutral-850: #0b1120;
     --color-neutral-900: #111827;
-    --color-background-light: #1e293b;
+    --color-page-background-light: #f8fafc;
+    --color-page-text-light: #000;
+    --color-page-background-dark: #141c2c;
+    --color-page-text-dark: #f8fafc;
     --color-indigo-300: #818cf8;
     --color-indigo-400: #6366f1;
     --color-indigo-500: #4f46e5;
@@ -25,10 +25,7 @@
     --color-gray-600: #94a3b8;
     --color-gray-700: #cbd5f5;
     --color-gray-800: #e2e8f0;
-    --color-gray-900: #f8fafc;
     --color-gray-900-rgb: 248 250 252;
-    --color-body-text: #e2e8f0;
-    --color-page-background: #0b1120;
     --color-control-background: #1f2b40;
     --color-control-text: #f8fafc;
     --color-control-border: #324061;

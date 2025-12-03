@@ -77,3 +77,29 @@ select {
 :target {
     scroll-margin-block: 5ex;
 }
+
+body .light {
+    background-color: var(--color-page-background-light);
+    color: var(--color-page-text-light);
+}
+
+body .light header {
+    border-bottom: 2px solid var(--color-gray-800);
+}
+
+body .light footer {
+    border-top: 2px solid var(--color-gray-800);
+}
+
+body .dark {
+    background-color: var(--color-page-background-dark);
+    color: var(--color-page-text-dark);
+}
+
+body .dark header {
+    border-bottom: 2px solid var(--color-gray-350);
+}
+
+body .dark footer {
+    border-top: 2px solid var(--color-gray-350);
+}
