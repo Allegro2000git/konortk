@@ -7,16 +7,18 @@
     justify-content: space-between;
     max-width: 1250px;
     margin: 0 auto;
+    padding: 0 10px;
 }
 
 .list {
     display: flex;
     align-items: center;
-    gap: 3rem;
+    gap: 2rem;
 }
 
 .link {
     color: inherit;
+    padding: 0 10px;
 }
 
 .logo {

@@ -14,7 +14,7 @@ export function Search() {
       <div>
         {query ? (
           <>
-            <h2>Search Results:</h2>
+            <h2>Results for "{query}"</h2>
             <>
               {data?.results &&
                 data.results.map((movie) => (
@@ -32,7 +32,7 @@ export function Search() {
             </>
           </>
         ) : (
-          <div> Enter a correct search</div>
+          <span>Enter a movie title to start searching.</span>
         )}
       </div>
     </div>

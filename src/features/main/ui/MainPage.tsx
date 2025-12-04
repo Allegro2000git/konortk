@@ -29,13 +29,26 @@ export function MainPage() {
 
   return (
     <>
-      <div className={s.movieSection}>
-        <div className={s.cover} style={{ backgroundImage: movieBackdropPath ? `url(${movieBackdropPath})` : "" }}>
-          <div>
-            <h1 style={{ color: "white" }}>Main Content</h1>
+      <div>
+        <div
+          className={s.cover}
+          style={{
+            backgroundImage: movieBackdropPath
+              ? `linear-gradient(rgba(4, 21, 45, 0) 5%, rgb(18, 18, 18) 96%), url(${movieBackdropPath})`
+              : "",
+          }}
+        >
+          <div className={s.container}>
+            <h1 style={{ color: "white", textTransform: "uppercase" }}>Welcome</h1>
+            <h3 style={{ color: "white", fontWeight: "normal", padding: "30px 0" }}>
+              Browse highlighted titles from TMDB
+            </h3>
             <SearchInput isSearchButtonActive={true} />
           </div>
         </div>
+        <section className={s.container}>
+          <h2 style={{ color: "red" }}>Hello</h2>
+        </section>
       </div>
     </>
   );

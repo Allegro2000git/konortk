@@ -1,7 +1,20 @@
 .cover {
     width: 100vw;
-    height: 70vh;
+    height: 75vh;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
+    position: relative;
     background-size: cover;
+}
+
+.cover::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+}
+
+.container {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding-top: 7rem;
 }

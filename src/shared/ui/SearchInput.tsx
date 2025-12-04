@@ -1,5 +1,7 @@
 import { type ChangeEvent, useState } from "react";
+import s from "./SearchInput.module.css";
 import { useNavigate } from "react-router";
+import * as React from "react";
 
 type Props = {
   onSearch?: (search: string) => void;
@@ -22,12 +24,25 @@ export function SearchInput({ onSearch, isSearchButtonActive = false }: Props) {
     setSearch(value);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleSearchClick();
+    }
+  };
+
   return (
-    <>
-      <input value={search} onChange={handleSearchChange} placeholder={"Search..."} />
-      <button disabled={!isSearchButtonActive || search.trim() === ""} onClick={handleSearchClick}>
+    <div className={s.container}>
+      <input
+        type={"search"}
+        value={search}
+        onChange={handleSearchChange}
+        onKeyDown={handleKeyDown}
+        placeholder={"Search..."}
+        className={s.input}
+      />
+      <button disabled={!isSearchButtonActive || search.trim() === ""} onClick={handleSearchClick} className={s.button}>
         Search
       </button>
-    </>
+    </div>
   );
 }

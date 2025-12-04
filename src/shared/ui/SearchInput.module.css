@@ -1,0 +1,40 @@
+@import url("@/app/styles/variables.css");
+
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 0 20px 20px 0;
+    overflow: hidden;
+    background-color: rgb(var(--color-border-base) / 20%);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgb(255 255 255 / 20%);
+}
+
+.input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    color: inherit;
+    font-size: 20px;
+    outline: none;
+}
+
+.input::placeholder {
+    color: rgb(255 255 255 / 70%);
+}
+
+.input:focus {
+    border: 2px solid var(--color-blue-600);
+}
+
+.button {
+    padding: 15px 30px;
+    border: none;
+    background-color: var(--color-blue-600);
+    color: var(--color-white);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
