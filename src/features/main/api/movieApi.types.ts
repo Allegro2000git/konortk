@@ -1,4 +1,4 @@
-export type Movies = {
+export type Movie = {
   adult: boolean;
   backdrop_path: string | null;
   genre_ids: number[];
@@ -17,13 +17,13 @@ export type Movies = {
 
 export type MoviesResponse = {
   page: number;
-  results: Movies[];
+  results: Movie[];
   total_pages: number;
   total_results: number;
 };
 
 export type GetPopularMoviesParams = {
-  language: string;
-  page: number;
+  language?: string;
+  page?: number;
   region?: string;
 };

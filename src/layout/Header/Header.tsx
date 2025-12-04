@@ -41,7 +41,7 @@ export const Header = () => {
             ))}
           </ul>
         </nav>
-        <button className={s.btntheme} onClick={changeMode}>
+        <button className={s["btn-theme"]} onClick={changeMode}>
           {themeMode === "light" ? "🌙" : "☀️"}
         </button>
       </div>

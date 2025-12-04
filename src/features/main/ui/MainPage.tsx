@@ -1,13 +1,41 @@
-import { useGetPopularMoviesCoverQuery } from "@/features/main/api/movieApi";
+import {
+  useGetNowPlayingMoviesQuery,
+  useGetPopularMoviesQuery,
+  useGetTopRatedMoviesQuery,
+  useGetUpcomingMoviesQuery,
+} from "@/features/main/api/movieApi";
 import s from "./MainPage.module.css";
-import { SearchInput } from "@/shared/ui/SearchInput";
+import { SearchInput } from "@/shared/ui/searchInput/SearchInput";
+import { MovieSection } from "@/features/main/ui/movieSections/MovieSection";
 
 export function MainPage() {
-  const {
-    data: popularData,
-    isLoading: isPopularLoading,
-    isError: isPopularError,
-  } = useGetPopularMoviesCoverQuery({ language: "en-US", page: 1 });
+  const { data: popularData, isLoading: isPopularLoading, isError: isPopularError } = useGetPopularMoviesQuery({});
+  const { data: topRatedData } = useGetTopRatedMoviesQuery({});
+  const { data: nowPlayingData } = useGetNowPlayingMoviesQuery({});
+  const { data: upcomingData } = useGetUpcomingMoviesQuery({});
+
+  const sections = [
+    {
+      title: "Popular Movies",
+      movies: popularData?.results || [],
+      link: "/movies/popular",
+    },
+    {
+      title: "Top Rated Movies",
+      movies: topRatedData?.results || [],
+      link: "/movies/top-rated",
+    },
+    {
+      title: "Upcoming Movies",
+      movies: upcomingData?.results || [],
+      link: "/movies/upcoming",
+    },
+    {
+      title: "Now Playing Movies",
+      movies: nowPlayingData?.results || [],
+      link: "/movies/now-playing",
+    },
+  ];
 
   if (isPopularError) {
     return <div>Some error occurred...</div>;
@@ -39,15 +67,15 @@ export function MainPage() {
           }}
         >
           <div className={s.container}>
-            <h1 style={{ color: "white", textTransform: "uppercase" }}>Welcome</h1>
-            <h3 style={{ color: "white", fontWeight: "normal", padding: "30px 0" }}>
-              Browse highlighted titles from TMDB
-            </h3>
+            <h1>Welcome</h1>
+            <h3>Browse highlighted titles from TMDB</h3>
             <SearchInput isSearchButtonActive={true} />
           </div>
         </div>
         <section className={s.container}>
-          <h2 style={{ color: "red" }}>Hello</h2>
+          {sections.map((section, index) => (
+            <MovieSection key={index} title={section.title} movies={section.movies} linkTo={section.link} />
+          ))}
         </section>
       </div>
     </>

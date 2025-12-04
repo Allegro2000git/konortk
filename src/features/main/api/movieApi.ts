@@ -7,16 +7,36 @@ export const movieApi = createApi({
   baseQuery,
   tagTypes: ["Movies"],
   endpoints: (builder) => ({
-    getPopularMoviesCover: builder.query<MoviesResponse, GetPopularMoviesParams>({
+    getPopularMovies: builder.query<MoviesResponse, GetPopularMoviesParams>({
       query: (params) => ({
         url: "movie/popular",
-        params: {
-          language: params.language,
-          page: params.page,
-        },
+        params,
+      }),
+    }),
+    getTopRatedMovies: builder.query<MoviesResponse, GetPopularMoviesParams>({
+      query: (params) => ({
+        url: "movie/top_rated",
+        params,
+      }),
+    }),
+    getUpcomingMovies: builder.query<MoviesResponse, GetPopularMoviesParams>({
+      query: (params) => ({
+        url: "movie/upcoming",
+        params,
+      }),
+    }),
+    getNowPlayingMovies: builder.query<MoviesResponse, GetPopularMoviesParams>({
+      query: (params) => ({
+        url: "movie/now_playing",
+        params,
       }),
     }),
   }),
 });
 
-export const { useGetPopularMoviesCoverQuery } = movieApi;
+export const {
+  useGetPopularMoviesQuery,
+  useGetTopRatedMoviesQuery,
+  useGetUpcomingMoviesQuery,
+  useGetNowPlayingMoviesQuery,
+} = movieApi;

@@ -19,7 +19,6 @@ export const Path = {
 export const Routing = () => {
   return (
     <Routes>
-      {/*<Route path="/auth" element={<Auth />} />*/}
       <Route element={<Layout />}>
         <Route path="/" element={<MainPage />} />
 
