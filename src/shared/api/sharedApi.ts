@@ -1,14 +1,14 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "@/app/api/baseQuery";
 import type { MoviesResponse } from "@/features/main/api/movieApi.types";
-import type { GetSearchMoviesParams } from "@/shared/api/sharedApi.types";
+import type { GetMovieDetails, GetSearchMovies } from "@/shared/api/sharedApi.types";
 
 export const sharedApi = createApi({
   reducerPath: "sharedApi",
   baseQuery,
   tagTypes: ["shared"],
   endpoints: (builder) => ({
-    getSearchMovies: builder.query<MoviesResponse, GetSearchMoviesParams>({
+    getSearchMovies: builder.query<MoviesResponse, GetSearchMovies>({
       query: (params) => ({
         url: "search/movie",
         params: {
@@ -17,7 +17,12 @@ export const sharedApi = createApi({
         },
       }),
     }),
+    getMovieDetails: builder.query<GetMovieDetails, number>({
+      query: (movieId: number) => ({
+        url: `movie/${movieId}`,
+      }),
+    }),
   }),
 });
 
-export const { useGetSearchMoviesQuery } = sharedApi;
+export const { useGetSearchMoviesQuery, useGetMovieDetailsQuery } = sharedApi;

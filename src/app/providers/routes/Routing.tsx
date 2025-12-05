@@ -6,6 +6,7 @@ import { Movies } from "@/Movies";
 import { MainPage } from "@/features/main/ui/MainPage";
 import { Layout } from "@/layout";
 import { Search } from "@/features/search/ui/Search";
+import { MovieDetails } from "@/shared/ui/moviePage/MovieDetails";
 
 export const Path = {
   Main: "/",
@@ -13,6 +14,7 @@ export const Path = {
   FilteredMovies: "/filtered-movies",
   Search: "/search",
   Favorites: "/favorites",
+  MovieDetails: "/movie/:id",
   NotFound: "*",
 } as const;
 
@@ -21,12 +23,10 @@ export const Routing = () => {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<MainPage />} />
-
         <Route path={Path.Movies} element={<Movies />} />
+        <Route path={Path.MovieDetails} element={<MovieDetails />} />
         <Route path={Path.FilteredMovies} element={<FilteredMovies />} />
-
         <Route path={Path.Search} element={<Search />} />
-
         <Route path={Path.Favorites} element={<Favorites />} />
 
         <Route path={Path.NotFound} element={<PageNotFound />} />

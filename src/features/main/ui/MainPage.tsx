@@ -18,22 +18,18 @@ export function MainPage() {
     {
       title: "Popular Movies",
       movies: popularData?.results || [],
-      link: "/movies/popular",
     },
     {
       title: "Top Rated Movies",
       movies: topRatedData?.results || [],
-      link: "/movies/top-rated",
     },
     {
       title: "Upcoming Movies",
       movies: upcomingData?.results || [],
-      link: "/movies/upcoming",
     },
     {
       title: "Now Playing Movies",
       movies: nowPlayingData?.results || [],
-      link: "/movies/now-playing",
     },
   ];
 
@@ -74,7 +70,7 @@ export function MainPage() {
         </div>
         <section className={s.container}>
           {sections.map((section, index) => (
-            <MovieSection key={index} title={section.title} movies={section.movies} linkTo={section.link} />
+            <MovieSection key={index} title={section.title} movies={section.movies} />
           ))}
         </section>
       </div>

@@ -22,7 +22,7 @@ export type MoviesResponse = {
   total_results: number;
 };
 
-export type GetPopularMoviesParams = {
+export type GetMoviesCategory = {
   language?: string;
   page?: number;
   region?: string;

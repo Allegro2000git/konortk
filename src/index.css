@@ -32,12 +32,12 @@ ol {
 
 /* Set core body defaults */
 body {
+    min-width: 320px;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     background-color: black;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 /* Set shorter line heights on headings and interactive elements */
