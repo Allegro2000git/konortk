@@ -64,7 +64,7 @@ export function MainPage() {
         >
           <div className={s.container}>
             <h1>Welcome</h1>
-            <h3>Browse highlighted titles from TMDB</h3>
+            <h3 className={s.subtitle}>Browse highlighted titles from TMDB</h3>
             <SearchInput isSearchButtonActive={true} />
           </div>
         </div>

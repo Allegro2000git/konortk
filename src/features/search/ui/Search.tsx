@@ -1,40 +1,34 @@
 import { useSearchParams } from "react-router";
 import { useGetSearchMoviesQuery } from "@/shared/api/sharedApi";
 import { SearchInput } from "@/shared/ui/searchInput/SearchInput";
+import { MovieCard } from "@/shared/components/movieCard";
+import s from "./Search.module.css";
 
 export function Search() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("query") || "";
 
-  const { data } = useGetSearchMoviesQuery({ query, page: 1 });
+  const { data } = useGetSearchMoviesQuery({ query });
 
   return (
-    <div>
+    <div className={s.search}>
+      <h2 className={s.title}>Search Results</h2>
       <SearchInput isSearchButtonActive={true} />
-      <div>
-        {query ? (
-          <>
-            <h2>Results for "{query}"</h2>
-            <>
-              {data?.results &&
-                data.results.map((movie) => (
-                  <div key={movie.id}>
-                    {movie.poster_path && (
-                      <img
-                        src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                        alt={movie.title}
-                        style={{ height: 250, width: 200, objectFit: "cover", margin: 0, padding: 0 }}
-                      />
-                    )}
-                    <h4 style={{ color: "white" }}>{movie.title}</h4>
-                  </div>
-                ))}
-            </>
-          </>
-        ) : (
-          <span>Enter a movie title to start searching.</span>
-        )}
-      </div>
+
+      {query ? (
+        <>
+          <h3 className={s["results-title"]}>Results for "{query}"</h3>
+          <div className={s["search-wrapper"]}>
+            {data?.results && data.results.length > 0 ? (
+              data.results.map((movie) => <MovieCard key={movie.id} movie={movie} />)
+            ) : (
+              <div>No movies found</div>
+            )}
+          </div>
+        </>
+      ) : (
+        <div className={s.enter}>Enter a movie title to start searching.</div>
+      )}
     </div>
   );
 }

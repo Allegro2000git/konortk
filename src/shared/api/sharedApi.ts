@@ -13,7 +13,6 @@ export const sharedApi = createApi({
         url: "search/movie",
         params: {
           query: params.query,
-          page: params.page,
         },
       }),
     }),

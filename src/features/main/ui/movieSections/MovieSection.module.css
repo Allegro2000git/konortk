@@ -14,14 +14,15 @@
     display: inline-block;
     color: var(--color-indigo-400);
     text-decoration: none;
-    border: 1px solid var(--color-border-base);
-    border-radius: 25px;
-    padding: 5px 10px;
+    border: 0.1rem solid var(--color-border-base);
+    border-radius: 1.7rem;
+    padding: 0.5rem;
     background-color: inherit;
 }
 
 .movies-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 20px;
+    gap: 1.5rem;
+    margin: 2rem 0;
 }

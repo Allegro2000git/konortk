@@ -27,14 +27,14 @@ export const MovieDetails = () => {
   const rating = Number(data.vote_average.toFixed(1));
   const ratingClass = getRatingClassName(rating);
 
+  const posterUrl = data.poster_path
+    ? `https://image.tmdb.org/t/p/w342${data.poster_path}`
+    : "https://placehold.co/280x420?text=No+Poster";
+
   return (
     <section>
       <div className={s.info}>
-        <img
-          src={`https://image.tmdb.org/t/p/w342${data.poster_path}`}
-          alt={"movie poster"}
-          className={s["poster-info"]}
-        />
+        <img src={posterUrl} alt={"movie poster"} className={s["poster-info"]} />
         <div>
           <div className={s.top}>
             <h2 className={s.title}>{data.title}</h2>
