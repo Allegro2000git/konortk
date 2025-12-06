@@ -1,0 +1,1 @@
+export { getRatingClassName } from "./getRatingClassName";

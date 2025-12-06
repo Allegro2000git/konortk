@@ -3,7 +3,6 @@
     grid-template-columns: 280px minmax(0, 1fr);
     gap: 2rem;
     padding: 2rem 0;
-    border: 1px solid red
 }
 
 .poster-info {
@@ -26,9 +25,10 @@
 
 .link {
     border-radius: 1rem;
-    padding: 0.7rem;
+    padding: 0.5rem 1rem;
     color: inherit;
     border: 1px solid var(--color-border-base);
+    outline: none;
 }
 
 .meta {
@@ -36,7 +36,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
-    color: var(--color-gray-600)
+    color: inherit;
 }
 
 .release {
@@ -47,12 +47,12 @@
 .rating {
     border-radius: 50%;
     padding: 0.7rem;
-    background-color: #22c55e;
-    color: inherit;
 }
 
 .text {
-    font-size: 1rem;
+    font-size: 1.2rem;
     line-height: 1.6;
-    color: var(--color-gray-700);
+    color: inherit;
+    text-align: left;
+    padding: 1rem 0;
 }

@@ -1,6 +1,8 @@
 import { useGetMovieDetailsQuery } from "@/shared/api/sharedApi";
 import { Link, useParams } from "react-router";
-import s from "./MovieDetails.module.css"
+import s from "./MovieDetails.module.css";
+import { getRatingClassName } from "@/shared/utils/getRatingClassName";
+import ratingStyles from "@/shared/styles/RatingBadge/RatingBadge.module.css";
 
 export const MovieDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -22,6 +24,9 @@ export const MovieDetails = () => {
     return <div>Movie not found</div>;
   }
 
+  const rating = Number(data.vote_average.toFixed(1));
+  const ratingClass = getRatingClassName(rating);
+
   return (
     <section>
       <div className={s.info}>
@@ -34,12 +39,12 @@ export const MovieDetails = () => {
           <div className={s.top}>
             <h2 className={s.title}>{data.title}</h2>
             <Link to={""} className={s.link}>
-              Back
+              back
             </Link>
           </div>
           <div className={s.meta}>
             <h5 className={s.release}>Release year: {new Date(data.release_date).getFullYear()}</h5>
-            <span className={s.rating}>{data.vote_average.toFixed(1)}</span>
+            <span className={`${s.rating} ${ratingStyles[ratingClass]}`}>{rating}</span>
             <span>Runtime: {data.runtime}m</span>
           </div>
           <p className={s.text}>{data.overview}</p>

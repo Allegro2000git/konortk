@@ -1,7 +1,5 @@
 .card {
-    border-radius: 10px;
     overflow: hidden;
-    transition: transform 0.3s;
     position: relative;
     padding: 10px;
 }
@@ -24,14 +22,17 @@
     text-overflow: ellipsis;
 }
 
-.rating {
+.favorite {
+    display: block;
+    visibility: hidden;
     position: absolute;
-    border: 1px solid #94ef18;
-    background-color: #94ef18;
-    bottom: 95px;
-    right: 15px;
-    font-weight: 500;
-    color: red; /* не забыть исправть 3 цвета качества */
-    padding: 0.4rem;
-    border-radius: 50%;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;
+}
+
+.favorite:hover {
+    visibility: visible;
 }

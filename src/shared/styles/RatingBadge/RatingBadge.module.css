@@ -1,0 +1,28 @@
+.rating {
+    position: absolute;
+    bottom: 6rem;
+    right: 1rem;
+    color: var(--color-gray-600);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-weight: 600;
+}
+
+.high {
+    border: 1px solid var(--color-green-600);
+    background-color: var(--color-green-600);
+}
+
+.medium {
+    border: 1px solid var(--color-yellow-400);
+    background-color: var(--color-yellow-400);
+}
+
+.low {
+    border: 1px solid var(--color-red-600);
+    background-color: var(--color-red-600);
+}
