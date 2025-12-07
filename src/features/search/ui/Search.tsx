@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router";
 import { useGetSearchMoviesQuery } from "@/shared/api/sharedApi";
-import { SearchInput } from "@/shared/ui/searchInput/SearchInput";
+import { SearchInput } from "@/shared/components/searchInput/SearchInput";
 import { MovieCard } from "@/shared/components/movieCard";
 import s from "./Search.module.css";
 
@@ -11,7 +11,7 @@ export function Search() {
   const { data } = useGetSearchMoviesQuery({ query });
 
   return (
-    <div className={s.search}>
+    <div>
       <h2 className={s.title}>Search Results</h2>
       <SearchInput isSearchButtonActive={true} />
 

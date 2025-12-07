@@ -2,15 +2,15 @@ import { Route, Routes } from "react-router";
 import { PageNotFound } from "@/PageNotFound";
 import { Favorites } from "@/Favorites";
 import { FilteredMovies } from "@/FilteredMovies";
-import { Movies } from "@/Movies";
 import { MainPage } from "@/features/main/ui/MainPage";
 import { Layout } from "@/layout";
 import { Search } from "@/features/search/ui/Search";
-import { MovieDetails } from "@/shared/ui/moviePage/MovieDetails";
+import { MovieDetails } from "@/shared/components/moviePage/MovieDetails";
+import { CategoryMovies } from "@/features/categoryMovies/ui/CategoryMovies";
 
 export const Path = {
   Main: "/",
-  Movies: "/movies", // делится на под категории больше роутинг
+  CategoryMovies: "/movies/:category",
   FilteredMovies: "/filtered-movies",
   Search: "/search",
   Favorites: "/favorites",
@@ -23,7 +23,7 @@ export const Routing = () => {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<MainPage />} />
-        <Route path={Path.Movies} element={<Movies />} />
+        <Route path={Path.CategoryMovies} element={<CategoryMovies />} />
         <Route path={Path.MovieDetails} element={<MovieDetails />} />
         <Route path={Path.FilteredMovies} element={<FilteredMovies />} />
         <Route path={Path.Search} element={<Search />} />

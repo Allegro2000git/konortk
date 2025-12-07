@@ -1,0 +1,13 @@
+.link {
+    border: 0.1rem solid var(--color-gray-300);
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: inherit;
+    border-radius: 2rem;
+}
+
+.active {
+    color: var(--color-white);
+    background-color: var(--color-blue-600);
+
+}

@@ -5,7 +5,7 @@ import {
   useGetUpcomingMoviesQuery,
 } from "@/features/main/api/movieApi";
 import s from "./MainPage.module.css";
-import { SearchInput } from "@/shared/ui/searchInput/SearchInput";
+import { SearchInput } from "@/shared/components/searchInput/SearchInput";
 import { MovieSection } from "@/features/main/ui/movieSections/MovieSection";
 
 export function MainPage() {
@@ -18,18 +18,22 @@ export function MainPage() {
     {
       title: "Popular Movies",
       movies: popularData?.results || [],
+      category: "popular",
     },
     {
       title: "Top Rated Movies",
       movies: topRatedData?.results || [],
+      category: "top-rated",
     },
     {
       title: "Upcoming Movies",
       movies: upcomingData?.results || [],
+      category: "upcoming",
     },
     {
       title: "Now Playing Movies",
       movies: nowPlayingData?.results || [],
+      category: "now-playing",
     },
   ];
 
@@ -53,27 +57,25 @@ export function MainPage() {
 
   return (
     <>
-      <div>
-        <div
-          className={s.cover}
-          style={{
-            backgroundImage: movieBackdropPath
-              ? `linear-gradient(rgba(4, 21, 45, 0) 5%, rgb(18, 18, 18) 96%), url(${movieBackdropPath})`
-              : "",
-          }}
-        >
-          <div className={s.container}>
-            <h1>Welcome</h1>
-            <h3 className={s.subtitle}>Browse highlighted titles from TMDB</h3>
-            <SearchInput isSearchButtonActive={true} />
-          </div>
+      <div
+        className={s.cover}
+        style={{
+          backgroundImage: movieBackdropPath
+            ? `linear-gradient(rgba(4, 21, 45, 0) 5%, rgb(18, 18, 18) 96%), url(${movieBackdropPath})`
+            : "",
+        }}
+      >
+        <div className={s.container}>
+          <h1>Welcome</h1>
+          <h3 className={s.subtitle}>Browse highlighted titles from TMDB</h3>
+          <SearchInput isSearchButtonActive={true} />
         </div>
-        <section className={s.container}>
-          {sections.map((section, index) => (
-            <MovieSection key={index} title={section.title} movies={section.movies} />
-          ))}
-        </section>
       </div>
+      <section className={s.container}>
+        {sections.map((section, index) => (
+          <MovieSection key={index} title={section.title} movies={section.movies} category={section.category} />
+        ))}
+      </section>
     </>
   );
 }

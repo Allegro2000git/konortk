@@ -1,0 +1,13 @@
+.links {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.category-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 1rem 0;
+}
