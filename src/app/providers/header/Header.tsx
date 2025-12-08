@@ -12,7 +12,7 @@ export const Header = () => {
 
   const navItems = [
     { to: Path.Main, label: "Main" },
-    { to: "/movies/popular", label: "Category movies" },
+    { to: Path.CategoryMoviesPopular, label: "Category movies" },
     { to: Path.FilteredMovies, label: "Filtered movies" },
     { to: Path.Search, label: "Search" },
     { to: Path.Favorites, label: "Favorites" },

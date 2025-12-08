@@ -1,8 +1,9 @@
-import { useGetMovieDetailsQuery } from "@/shared/api/sharedApi";
+import { useGetMovieCreditsQuery, useGetMovieDetailsQuery, useGetMoviesSimilarQuery } from "@/shared/api/sharedApi";
 import { Link, useParams } from "react-router";
 import s from "./MovieDetails.module.css";
 import { getRatingClassName } from "@/shared/utils/getRatingClassName";
 import ratingStyles from "@/shared/styles/RatingBadge/RatingBadge.module.css";
+import { MovieCard } from "@/shared/components/movieCard";
 
 export const MovieDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -11,6 +12,9 @@ export const MovieDetails = () => {
   const { data, isError, isLoading } = useGetMovieDetailsQuery(movieId, {
     skip: !movieId,
   });
+
+  const { data: creditsData } = useGetMovieCreditsQuery(movieId);
+  const { data: similar } = useGetMoviesSimilarQuery(movieId);
 
   if (isError) {
     return <div>Some occurred error</div>;
@@ -30,6 +34,8 @@ export const MovieDetails = () => {
   const posterUrl = data.poster_path
     ? `https://image.tmdb.org/t/p/w342${data.poster_path}`
     : "https://placehold.co/280x420?text=No+Poster";
+
+  const mainCast = creditsData?.cast.filter((actor) => actor.known_for_department === "Acting").slice(0, 6) || [];
 
   return (
     <section>
@@ -51,8 +57,36 @@ export const MovieDetails = () => {
           <div>Genres: {data.genres?.map((g) => g.name).join(", ")}</div>
         </div>
       </div>
-      <section>Cast</section>
-      <section>Similar Movies</section>
+      <section>
+        <h3>Cast:</h3>
+        <div className={s["cast-grid"]}>
+          {mainCast.map((actor) => {
+            const actorPhotoUrl = actor.profile_path
+              ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`
+              : "https://placehold.co/150x225?text=No+Photo";
+
+            return (
+              <div key={actor.id} className={s["actor-card"]}>
+                <img src={actorPhotoUrl} alt={actor.name} className={s["actor-photo"]} />
+                <div>
+                  <p>{actor.name}</p>
+                  <p className={s["actor-character"]}>{actor.character}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+      {similar?.results && similar.results.length > 0 && (
+        <section className={s.similar}>
+          <h3>Similar Movies</h3>
+          <div className={s["similar-grid"]}>
+            {similar.results.slice(0, 6).map((movie) => (
+              <MovieCard key={movie.id} movie={movie} />
+            ))}
+          </div>
+        </section>
+      )}
     </section>
   );
 };

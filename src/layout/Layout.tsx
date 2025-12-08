@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import { Header } from "@/layout/Header";
+import { Header } from "@/app/providers/header";
 import s from "./Layout.module.css";
 import { useAppSelector } from "@/shared/hooks/useAppSelector";
 import { selectThemeMode } from "@/app/providers/theme/model/theme-slice";

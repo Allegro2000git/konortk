@@ -24,7 +24,7 @@ export const CategoryMovies = () => {
         <NavLinkButton to="/movies/upcoming">Upcoming Movies</NavLinkButton>
         <NavLinkButton to="/movies/now-playing">Now Playing Movies</NavLinkButton>
       </nav>
-      <h2>{category} Movies</h2>
+      <h3>{category} movies</h3>
       <div className={s["category-wrapper"]}>
         {data?.results && data.results.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
       </div>

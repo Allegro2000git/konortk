@@ -26,7 +26,7 @@
 }
 
 .input:focus {
-    border: 0.2rem solid var(--color-blue-600);
+    border: 0.1rem solid var(--color-blue-600);
 }
 
 .button {
