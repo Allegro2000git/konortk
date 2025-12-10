@@ -1,11 +1,13 @@
 import { useGetMovieCreditsQuery, useGetMovieDetailsQuery, useGetMoviesSimilarQuery } from "@/shared/api/sharedApi";
-import { Link, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import s from "./MovieDetails.module.css";
 import { getRatingClassName } from "@/shared/utils/getRatingClassName";
 import ratingStyles from "@/shared/styles/RatingBadge/RatingBadge.module.css";
 import { MovieCard } from "@/shared/components/movieCard";
+import { Path } from "@/app/providers/routes/Routing";
 
 export const MovieDetails = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const movieId = id ? parseInt(id, 10) : 0;
 
@@ -37,6 +39,14 @@ export const MovieDetails = () => {
 
   const mainCast = creditsData?.cast.filter((actor) => actor.known_for_department === "Acting").slice(0, 6) || [];
 
+  const onClickBackHandler = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate(Path.Main);
+    }
+  };
+
   return (
     <section>
       <div className={s.info}>
@@ -44,9 +54,9 @@ export const MovieDetails = () => {
         <div>
           <div className={s.top}>
             <h2 className={s.title}>{data.title}</h2>
-            <Link to={""} className={s.link}>
+            <button className={s.button} onClick={onClickBackHandler}>
               back
-            </Link>
+            </button>
           </div>
           <div className={s.meta}>
             <h5 className={s.release}>Release year: {new Date(data.release_date).getFullYear()}</h5>
