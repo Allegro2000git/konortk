@@ -1,29 +1,44 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const loadFavoritesFromLocalStorage = (): FavoriteMovie[] => {
+  try {
+    const favorites = localStorage.getItem("favoriteMovie");
+    if (favorites) {
+      return JSON.parse(favorites);
+    }
+  } catch (error) {
+    console.error("Error loading favorites from localStorage:", error);
+  }
+  return [];
+};
+
 export const favoriteMovieSlice = createSlice({
   name: "favoriteMovie",
-  initialState: {
-    favoriteMovie: [] as FavoriteMovie[],
-  },
+  initialState: loadFavoritesFromLocalStorage(),
   selectors: {
-    selectFavorite: (state) => state.favoriteMovie,
+    selectFavorite: (state) => state,
   },
   reducers: (create) => ({
-    addToFavoriteAC: create.reducer<{}>((state, action) => {
-
-    }),
-    deleteFromFavoriteAC: create.reducer<FavoriteMovie>(() => {
+    toggleFavoriteAC: create.reducer<FavoriteMovie>((state, action) => {
+      const selectedMovie = action.payload;
+      const existedMovieId = state.findIndex((movie) => movie.id === selectedMovie.id);
+      if (existedMovieId !== -1) {
+        state.splice(existedMovieId, 1);
+      } else {
+        state.push(selectedMovie);
+      }
+      localStorage.setItem("favoriteMovie", JSON.stringify(state));
     }),
   }),
 });
 
 export const { selectFavorite } = favoriteMovieSlice.selectors;
-export const { addToFavoriteAC, deleteFromFavoriteAC } = favoriteMovieSlice.actions;
+export const { toggleFavoriteAC } = favoriteMovieSlice.actions;
 export const favoriteMovieReducer = favoriteMovieSlice.reducer;
 
 export type FavoriteMovie = {
   id: number;
   title: string;
-  posterUrl: string,
+  posterUrl: string;
   voteAverage: number;
 };
