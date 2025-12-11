@@ -18,7 +18,7 @@ export function Search() {
       {query ? (
         <>
           <h3 className={s["results-title"]}>Results for "{query}"</h3>
-          <div className={s["searchPage-wrapper"]}>
+          <div className={s["search-page-wrapper"]}>
             {data?.results && data.results.length > 0 ? (
               data.results.map((movie) => <MovieCard key={movie.id} movie={movie} />)
             ) : (

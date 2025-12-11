@@ -5,15 +5,15 @@ import { FilteredMovies } from "@/FilteredMovies";
 import { Layout } from "@/layout";
 import { MovieDetails } from "@/pages/moviePage/MovieDetails";
 import { CategoryMoviesPage } from "@/pages/categoryMoviesPage/categoryMoviesPage";
-import { Search } from "@/pages/searchPage/Search";
 import { MainPage } from "@/pages/mainPage/MainPage";
+import { Search } from "@/pages/searchPage/Search";
 
 export const Path = {
   Main: "/",
   CategoryMovies: "/movies/:category",
   CategoryMoviesPopular: "/movies/popular",
   FilteredMovies: "/filtered-movies",
-  Search: "/searchPage",
+  Search: "/search",
   Favorites: "/favorites",
   MovieDetails: "/movie/:id",
   NotFound: "*",
