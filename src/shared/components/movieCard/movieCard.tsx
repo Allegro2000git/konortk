@@ -12,20 +12,35 @@ import {
 } from "@/app/providers/favoriteMovie/model/favorite-movie-slice";
 import * as React from "react";
 
+type MovieCardData = Movie | FavoriteMovie;
+
+const isFavoriteMovie = (movie: MovieCardData): movie is FavoriteMovie => {
+  return "posterUrl" in movie && "voteAverage" in movie;
+};
+
 type Props = {
-  movie: Movie;
+  movie: MovieCardData;
 };
 
 export const MovieCard = ({ movie }: Props) => {
   const favoriteMovie = useAppSelector(selectFavorite);
   const dispatch = useAppDispatch();
-  const posterUrl = movie.poster_path
-    ? `https://image.tmdb.org/t/p/w185${movie.poster_path}`
-    : "https://placehold.co/280x420?text=No+Poster";
 
-  const rating = Number(movie.vote_average.toFixed(1));
+  let posterUrl: string;
+  let rating: number;
 
-  const ratingClass = getRatingClassName(rating);
+  if (isFavoriteMovie(movie)) {
+    posterUrl = movie.posterUrl;
+    rating = movie.voteAverage;
+  } else {
+    posterUrl = movie.poster_path
+      ? `https://image.tmdb.org/t/p/w185${movie.poster_path}`
+      : "https://placehold.co/280x420?text=No+Poster";
+    rating = movie.vote_average;
+  }
+
+  const finalRating = Number(rating.toFixed(1));
+  const ratingClass = getRatingClassName(finalRating);
 
   const favoriteMovieExist = favoriteMovie.some((el) => el.id === movie.id);
 
@@ -36,7 +51,7 @@ export const MovieCard = ({ movie }: Props) => {
       id: movie.id,
       title: movie.title,
       posterUrl: posterUrl,
-      voteAverage: movie.vote_average,
+      voteAverage: rating,
     };
     dispatch(toggleFavoriteAC(selectFavoriteMovie));
   };
@@ -47,12 +62,10 @@ export const MovieCard = ({ movie }: Props) => {
         <img src={posterUrl} alt={movie.title} className={s.poster} />
         <div>
           <h3 className={s.title}>{movie.title}</h3>
-          <div className={`${ratingStyles.rating} ${ratingStyles[ratingClass]}`}>{rating}</div>
+          <div className={`${ratingStyles.rating} ${ratingStyles[ratingClass]}`}>{finalRating}</div>
         </div>
       </Link>
-      <button className={`${s.favorite} ${favoriteMovieExist ? s.active : ""}`} onClick={handleToggleFavoriteClick}>
-        {favoriteMovieExist ? "❤️" : "🤍"}
-      </button>
+      <button className={`${s.favorite} ${favoriteMovieExist ? s.active : ""}`} onClick={handleToggleFavoriteClick} />
     </div>
   );
 };

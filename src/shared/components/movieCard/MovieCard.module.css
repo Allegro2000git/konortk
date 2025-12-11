@@ -1,3 +1,39 @@
+.favorite {
+    position: absolute;
+    bottom: 4rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgb(15 23 42 / 60%);
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s, background-color 0.2s;
+    opacity: 0;
+    border: none;
+    color: inherit;
+
+    &::after {
+        content: "🤍";
+    }
+
+    &.active {
+        opacity: 1;
+
+        &::after {
+            content: "❤️";
+        }
+    }
+
+    &:hover {
+        background-color: rgb(15 23 42 / 80%);
+        transform: scale(1.1);
+    }
+}
+
 .card {
     overflow: hidden;
     position: relative;
@@ -5,7 +41,13 @@
 
     &:hover {
         transform: translateY(-5px);
+
+        .favorite {
+            opacity: 1;
+        }
     }
+
+    transition: transform 0.2s;
 }
 
 .poster {
@@ -23,26 +65,4 @@
     text-overflow: ellipsis;
     font-weight: 400;
     margin: 0.5rem 0;
-}
-
-.favorite {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 1.5rem;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-        background: white;
-        transform: scale(1.1);
-    }
-
-    &.active {
-        color: #ff4d4d;
-    }
 }

@@ -20,7 +20,7 @@ export const MovieSection = ({ title, movies, category }: Props) => {
       </div>
 
       <div className={s["movies-grid"]}>
-        {movies.slice(0, 6).map((movie) => (
+        {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>

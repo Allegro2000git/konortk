@@ -1,19 +1,19 @@
 import { Route, Routes } from "react-router";
 import { PageNotFound } from "@/PageNotFound";
-import { Favorites } from "@/Favorites";
+import { Favorites } from "@/pages/favoritePage/Favorites";
 import { FilteredMovies } from "@/FilteredMovies";
-import { MainPage } from "@/features/main/ui/MainPage";
 import { Layout } from "@/layout";
-import { Search } from "@/features/search/ui/Search";
 import { MovieDetails } from "@/pages/moviePage/MovieDetails";
 import { CategoryMoviesPage } from "@/pages/categoryMoviesPage/categoryMoviesPage";
+import { Search } from "@/pages/searchPage/Search";
+import { MainPage } from "@/pages/mainPage/MainPage";
 
 export const Path = {
   Main: "/",
   CategoryMovies: "/movies/:category",
   CategoryMoviesPopular: "/movies/popular",
   FilteredMovies: "/filtered-movies",
-  Search: "/search",
+  Search: "/searchPage",
   Favorites: "/favorites",
   MovieDetails: "/movie/:id",
   NotFound: "*",

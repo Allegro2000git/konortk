@@ -1,59 +1,51 @@
+import { SearchInput } from "@/shared/components/searchInput/SearchInput";
+import { MovieSection } from "@/features/main/ui/movieSections/MovieSection";
+import s from "./Main.module.css";
 import {
   useGetNowPlayingMoviesQuery,
   useGetPopularMoviesQuery,
   useGetTopRatedMoviesQuery,
   useGetUpcomingMoviesQuery,
 } from "@/features/main/api/movieApi";
-import s from "./MainPage.module.css";
-import { SearchInput } from "@/shared/components/searchInput/SearchInput";
-import { MovieSection } from "@/features/main/ui/movieSections/MovieSection";
+import { getMovieBackdropPath } from "@/features/movieBackdropPath/getMovieBackdropPath";
 
-export function MainPage() {
-  const { data: popularData, isLoading: isPopularLoading, isError: isPopularError } = useGetPopularMoviesQuery({});
+export function Main() {
+  const { data: popularData, isLoading, isError } = useGetPopularMoviesQuery({});
   const { data: topRatedData } = useGetTopRatedMoviesQuery({});
   const { data: nowPlayingData } = useGetNowPlayingMoviesQuery({});
   const { data: upcomingData } = useGetUpcomingMoviesQuery({});
+  const movieBackdropPath = getMovieBackdropPath();
 
   const sections = [
     {
       title: "Popular Movies",
-      movies: popularData?.results || [],
+      movies: popularData?.results?.slice(0, 6) || [],
       category: "popular",
     },
     {
       title: "Top Rated Movies",
-      movies: topRatedData?.results || [],
+      movies: topRatedData?.results?.slice(0, 6) || [],
       category: "top-rated",
     },
     {
       title: "Upcoming Movies",
-      movies: upcomingData?.results || [],
+      movies: upcomingData?.results?.slice(0, 6) || [],
       category: "upcoming",
     },
     {
       title: "Now Playing Movies",
-      movies: nowPlayingData?.results || [],
+      movies: nowPlayingData?.results?.slice(0, 6) || [],
       category: "now-playing",
     },
   ];
 
-  if (isPopularError) {
+  if (isError) {
     return <div>Some error occurred...</div>;
   }
 
-  if (isPopularLoading) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
-  const getMovieBackdropPath = () => {
-    if (!popularData?.results || popularData.results.length === 0) {
-      return;
-    }
-    const moviesWithBackdrop = popularData.results.filter((movie) => movie.backdrop_path);
-    const randomMovie = moviesWithBackdrop[Math.floor(Math.random() * moviesWithBackdrop.length)];
-    return `https://image.tmdb.org/t/p/original${randomMovie.backdrop_path}`;
-  };
-
-  const movieBackdropPath = getMovieBackdropPath();
 
   return (
     <>
