@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { type FavoriteMovie, selectFavorite } from "@/app/providers/favoriteMovie/model/favorite-movie-slice";
+import { type FavoriteMovie, selectFavorite } from "@/features/toggleFavoriteMovie/model/favorite-movie-slice";
 import { useAppSelector } from "@/shared/hooks/useAppSelector";
 
 export function useFavorites() {
@@ -12,7 +12,7 @@ export function useFavorites() {
 
   useEffect(() => {
     const loadFavorites = () => {
-      const moviesFromStorage = localStorage.getItem("favoriteMovie");
+      const moviesFromStorage = localStorage.getItem("toggleFavoriteMovie");
       if (moviesFromStorage) {
         try {
           setFavorites(JSON.parse(moviesFromStorage));

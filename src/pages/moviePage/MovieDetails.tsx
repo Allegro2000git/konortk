@@ -1,10 +1,10 @@
 import { useGetMovieCreditsQuery, useGetMovieDetailsQuery, useGetMoviesSimilarQuery } from "@/shared/api/sharedApi";
 import { useNavigate, useParams } from "react-router";
 import s from "./MovieDetails.module.css";
-import { getRatingClassName } from "@/shared/utils/getRatingClassName";
 import ratingStyles from "@/shared/styles/RatingBadge/RatingBadge.module.css";
 import { MovieCard } from "@/shared/components/movieCard";
 import { Path } from "@/app/providers/routes/Routing";
+import { getRatingClassName } from "@/shared/utils";
 
 export const MovieDetails = () => {
   const navigate = useNavigate();

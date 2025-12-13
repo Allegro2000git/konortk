@@ -1,4 +1,4 @@
-import { SearchInput } from "@/shared/components/searchInput/SearchInput";
+import { SearchInput } from "@/features/searchInput/SearchInput";
 import { MovieSection } from "@/features/main/ui/movieSections/MovieSection";
 import s from "./Main.module.css";
 import {
@@ -10,11 +10,11 @@ import {
 import { getMovieBackdropPath } from "@/features/movieBackdropPath/getMovieBackdropPath";
 
 export function Main() {
-  const { data: popularData, isLoading, isError } = useGetPopularMoviesQuery({});
-  const { data: topRatedData } = useGetTopRatedMoviesQuery({});
-  const { data: nowPlayingData } = useGetNowPlayingMoviesQuery({});
-  const { data: upcomingData } = useGetUpcomingMoviesQuery({});
-  const movieBackdropPath = getMovieBackdropPath();
+  const { data: popularData, isLoading, isError } = useGetPopularMoviesQuery({ page: 1 });
+  const { data: topRatedData } = useGetTopRatedMoviesQuery({ page: 1 });
+  const { data: nowPlayingData } = useGetNowPlayingMoviesQuery({ page: 1 });
+  const { data: upcomingData } = useGetUpcomingMoviesQuery({ page: 1 });
+  const movieBackdropPath = getMovieBackdropPath(popularData);
 
   const sections = [
     {

@@ -1,8 +1,6 @@
-import { useGetPopularMoviesQuery } from "@/features/main/api/movieApi";
+import type { MoviesResponse } from "@/features/main/api/movieApi.types";
 
-export const getMovieBackdropPath = () => {
-  const { data } = useGetPopularMoviesQuery({});
-
+export const getMovieBackdropPath = (data?: MoviesResponse) => {
   if (!data?.results || data.results.length === 0) {
     return;
   }

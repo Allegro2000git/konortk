@@ -3,7 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { movieApi } from "@/features/main/api/movieApi";
 import { sharedApi } from "@/shared/api/sharedApi";
 import { themeReducer, themeSlice } from "@/app/providers/theme/model/theme-slice";
-import { favoriteMovieReducer, favoriteMovieSlice } from "@/app/providers/favoriteMovie/model/favorite-movie-slice";
+import { favoriteMovieReducer, favoriteMovieSlice } from "@/features/toggleFavoriteMovie/model/favorite-movie-slice";
 
 export const store = configureStore({
   reducer: {

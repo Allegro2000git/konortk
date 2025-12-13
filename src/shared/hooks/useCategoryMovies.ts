@@ -1,22 +1,15 @@
-import {
-  useGetNowPlayingMoviesQuery,
-  useGetPopularMoviesQuery,
-  useGetTopRatedMoviesQuery,
-  useGetUpcomingMoviesQuery,
-} from "@/features/main/api/movieApi";
 import type { GetMoviesCategory } from "@/features/main/api/movieApi.types";
+import { movieApi } from "@/features/main/api/movieApi";
 
-export const useCategoryMovies = (urlCategory: string, params?: GetMoviesCategory) => {
-  const queryConfig = params || {};
+const categoryMap = {
+  popular: movieApi.endpoints.getPopularMovies,
+  top_rated: movieApi.endpoints.getTopRatedMovies,
+  upcoming: movieApi.endpoints.getUpcomingMovies,
+  now_playing: movieApi.endpoints.getNowPlayingMovies,
+} as const;
 
-  const getCurrectApiCategory = urlCategory.replace("-", "_");
-
-  const categoryMap = {
-    popular: useGetPopularMoviesQuery(queryConfig),
-    top_rated: useGetTopRatedMoviesQuery(queryConfig),
-    upcoming: useGetUpcomingMoviesQuery(queryConfig),
-    now_playing: useGetNowPlayingMoviesQuery(queryConfig),
-  } as const;
-
-  return categoryMap[getCurrectApiCategory as keyof typeof categoryMap] || categoryMap.popular;
+export const useCategoryMovies = (urlCategory: string, params: GetMoviesCategory) => {
+  const category = urlCategory.replace("-", "_");
+  const endpoint = categoryMap[category as keyof typeof categoryMap] || categoryMap.popular;
+  return endpoint.useQuery(params);
 };

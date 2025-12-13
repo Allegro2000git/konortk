@@ -3,10 +3,14 @@ import { useCategoryMovies } from "@/shared/hooks/useCategoryMovies";
 import { MovieCard } from "@/shared/components/movieCard";
 import s from "./CategoryMovies.module.css";
 import { NavLinkButton } from "@/shared/components/navLink/NavLinkButton";
+import { Pagination } from "@/shared/components/pagination/Pagination";
+import { useState } from "react";
 
 export const CategoryMovies = () => {
   const { category = "popular" } = useParams();
-  const { data, isLoading, isError } = useCategoryMovies(category);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  const { data, isLoading, isError } = useCategoryMovies(category, { page: currentPage });
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -28,6 +32,7 @@ export const CategoryMovies = () => {
       <div className={s["category-wrapper"]}>
         {data?.results && data.results.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
       </div>
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} pagesCount={data?.total_pages || 1} />
     </>
   );
 };

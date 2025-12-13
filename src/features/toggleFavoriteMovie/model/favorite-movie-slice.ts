@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const loadFavoritesFromLocalStorage = (): FavoriteMovie[] => {
   try {
-    const favorites = localStorage.getItem("favoriteMovie");
+    const favorites = localStorage.getItem("toggleFavoriteMovie");
     if (favorites) {
       return JSON.parse(favorites);
     }
@@ -27,7 +27,7 @@ export const favoriteMovieSlice = createSlice({
       } else {
         state.push(selectedMovie);
       }
-      localStorage.setItem("favoriteMovie", JSON.stringify(state));
+      localStorage.setItem("toggleFavoriteMovie", JSON.stringify(state));
     }),
   }),
 });

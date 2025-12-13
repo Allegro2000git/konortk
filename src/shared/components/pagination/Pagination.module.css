@@ -1,0 +1,26 @@
+.pagination {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.page-button {
+    padding: 7px 10px;
+    background: inherit;
+    color: inherit;
+    border: 1px solid var(--color-gray-350);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.page-button-active {
+    background: var(--color-blue-600);
+    color: var(--color-white);
+}
+
+.ellipsis {
+    padding: 4px 10px;
+    color: var(--color-gray-500);
+    user-select: none;
+}
