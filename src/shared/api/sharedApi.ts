@@ -8,11 +8,20 @@ export const sharedApi = createApi({
   baseQuery,
   tagTypes: ["shared"],
   endpoints: (builder) => ({
-    getSearchMovies: builder.query<MoviesResponse, GetSearchMovies>({
-      query: (params) => ({
+    getSearchMovies: builder.infiniteQuery<MoviesResponse, GetSearchMovies, number>({
+      infiniteQueryOptions: {
+        initialPageParam: 1,
+        getNextPageParam: (lastPage) => {
+          if (lastPage.page < lastPage.total_pages) {
+            return lastPage.page + 1;
+          }
+        },
+      },
+      query: ({ queryArg, pageParam = 1 }) => ({
         url: "search/movie",
         params: {
-          query: params.query,
+          query: queryArg.query,
+          page: pageParam,
         },
       }),
     }),
@@ -34,4 +43,9 @@ export const sharedApi = createApi({
   }),
 });
 
-export const { useGetSearchMoviesQuery, useGetMovieDetailsQuery, useGetMovieCreditsQuery, useGetMoviesSimilarQuery } = sharedApi;
+export const {
+  useGetSearchMoviesInfiniteQuery,
+  useGetMovieDetailsQuery,
+  useGetMovieCreditsQuery,
+  useGetMoviesSimilarQuery,
+} = sharedApi;
