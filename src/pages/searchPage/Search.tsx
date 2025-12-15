@@ -58,7 +58,7 @@ export function Search() {
             ) : (
               <div>No movies found</div>
             )}
-            <div ref={loadMore} style={{ height: 20, width: "100%" }} />
+            <div ref={loadMore} style={{ height: 20 }} />
           </div>
         </>
       ) : (

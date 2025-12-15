@@ -1,12 +1,8 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQuery } from "@/app/api/baseQuery";
 import type { MoviesResponse } from "@/features/main/api/movieApi.types";
 import type { GetMovieDetails, GetSearchMovies, MovieCredits } from "@/shared/api/sharedApi.types";
+import { baseApi } from "@/app/api/baseApi";
 
-export const sharedApi = createApi({
-  reducerPath: "sharedApi",
-  baseQuery,
-  tagTypes: ["shared"],
+export const sharedApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getSearchMovies: builder.infiniteQuery<MoviesResponse, GetSearchMovies, number>({
       infiniteQueryOptions: {

@@ -1,17 +1,14 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQuery } from "@/app/api/baseQuery";
 import type { GetMoviesCategory, MoviesResponse } from "@/features/main/api/movieApi.types";
+import { baseApi } from "@/app/api/baseApi";
 
-export const movieApi = createApi({
-  reducerPath: "movieApi",
-  baseQuery,
-  tagTypes: ["Movies"],
+export const movieApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getPopularMovies: builder.query<MoviesResponse, GetMoviesCategory>({
       query: (params) => ({
         url: "movie/popular",
         params,
       }),
+      providesTags: ["Movies"],
     }),
     getTopRatedMovies: builder.query<MoviesResponse, GetMoviesCategory>({
       query: (params) => ({
@@ -24,12 +21,14 @@ export const movieApi = createApi({
         url: "movie/upcoming",
         params,
       }),
+      providesTags: ["Movies"],
     }),
     getNowPlayingMovies: builder.query<MoviesResponse, GetMoviesCategory>({
       query: (params) => ({
         url: "movie/now_playing",
         params,
       }),
+      providesTags: ["Movies"],
     }),
   }),
 });
