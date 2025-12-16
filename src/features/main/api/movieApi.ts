@@ -8,27 +8,28 @@ export const movieApi = baseApi.injectEndpoints({
         url: "movie/popular",
         params,
       }),
-      providesTags: ["Movies"],
+      providesTags: (result, error, arg) => [{ type: "Popular", id: `${arg.page}` }],
     }),
     getTopRatedMovies: builder.query<MoviesResponse, GetMoviesCategory>({
       query: (params) => ({
         url: "movie/top_rated",
         params,
       }),
+      providesTags: ["Movies", "Rated"],
     }),
     getUpcomingMovies: builder.query<MoviesResponse, GetMoviesCategory>({
       query: (params) => ({
         url: "movie/upcoming",
         params,
       }),
-      providesTags: ["Movies"],
+      providesTags: (result, error, arg) => [{ type: "Upcoming", id: `${arg.page}` }],
     }),
     getNowPlayingMovies: builder.query<MoviesResponse, GetMoviesCategory>({
       query: (params) => ({
         url: "movie/now_playing",
         params,
       }),
-      providesTags: ["Movies"],
+      providesTags: ["Movies", "Now"],
     }),
   }),
 });

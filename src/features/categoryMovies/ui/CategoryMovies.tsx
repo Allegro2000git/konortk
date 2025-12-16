@@ -4,13 +4,24 @@ import { MovieCard } from "@/shared/components/movieCard";
 import s from "./CategoryMovies.module.css";
 import { NavLinkButton } from "@/shared/components/navLink/NavLinkButton";
 import { Pagination } from "@/shared/components/pagination/Pagination";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const CategoryMovies = () => {
-  const { category = "popular" } = useParams();
+  const { category = "popular" } = useParams<{ category: string }>();
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const prevCategoryRef = useRef(category);
 
-  const { data, isLoading, isError } = useCategoryMovies(category, { page: currentPage });
+  const actualPage = category !== prevCategoryRef.current ? 1 : currentPage;
+
+  const { data, isLoading, isError } = useCategoryMovies(category, {
+    page: actualPage,
+  });
+
+  useEffect(() => {
+    if (category !== prevCategoryRef.current) {
+      prevCategoryRef.current = category;
+    }
+  }, [category]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -32,7 +43,7 @@ export const CategoryMovies = () => {
       <div className={s["category-wrapper"]}>
         {data?.results && data.results.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
       </div>
-      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} pagesCount={data?.total_pages || 1} />
+      <Pagination currentPage={actualPage} setCurrentPage={setCurrentPage} pagesCount={data?.total_pages || 1} />
     </>
   );
 };
