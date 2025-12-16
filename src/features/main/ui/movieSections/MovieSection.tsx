@@ -6,7 +6,7 @@ import { MovieCard } from "@/shared/components/movieCard";
 type Props = {
   title: string;
   movies: Movie[];
-  category?: string;
+  category: string;
 };
 
 export const MovieSection = ({ title, movies, category }: Props) => {

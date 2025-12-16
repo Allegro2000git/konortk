@@ -3,40 +3,16 @@ import { baseApi } from "@/app/api/baseApi";
 
 export const movieApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getPopularMovies: builder.query<MoviesResponse, GetMoviesCategory>({
-      query: (params) => ({
-        url: "movie/popular",
+    getCategoryMovies: builder.query<MoviesResponse, { category: Category; params: GetMoviesCategory }>({
+      query: ({ category, params }) => ({
+        url: `movie/${category}`,
         params,
       }),
-      providesTags: (result, error, arg) => [{ type: "Popular", id: `${arg.page}` }],
-    }),
-    getTopRatedMovies: builder.query<MoviesResponse, GetMoviesCategory>({
-      query: (params) => ({
-        url: "movie/top_rated",
-        params,
-      }),
-      providesTags: ["Movies", "Rated"],
-    }),
-    getUpcomingMovies: builder.query<MoviesResponse, GetMoviesCategory>({
-      query: (params) => ({
-        url: "movie/upcoming",
-        params,
-      }),
-      providesTags: (result, error, arg) => [{ type: "Upcoming", id: `${arg.page}` }],
-    }),
-    getNowPlayingMovies: builder.query<MoviesResponse, GetMoviesCategory>({
-      query: (params) => ({
-        url: "movie/now_playing",
-        params,
-      }),
-      providesTags: ["Movies", "Now"],
+      providesTags: (_result, _error, { category }) => [{ type: "Movies", id: `${category}` }],
     }),
   }),
 });
 
-export const {
-  useGetPopularMoviesQuery,
-  useGetTopRatedMoviesQuery,
-  useGetUpcomingMoviesQuery,
-  useGetNowPlayingMoviesQuery,
-} = movieApi;
+export const { useGetCategoryMoviesQuery } = movieApi;
+
+export type Category = "popular" | "top_rated" | "upcoming" | "now_playing";

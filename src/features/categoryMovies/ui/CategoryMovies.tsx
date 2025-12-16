@@ -1,27 +1,16 @@
-import { useParams } from "react-router";
 import { useCategoryMovies } from "@/shared/hooks/useCategoryMovies";
 import { MovieCard } from "@/shared/components/movieCard";
 import s from "./CategoryMovies.module.css";
 import { NavLinkButton } from "@/shared/components/navLink/NavLinkButton";
 import { Pagination } from "@/shared/components/pagination/Pagination";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import type { Category } from "@/features/main/api/movieApi";
 
-export const CategoryMovies = () => {
-  const { category = "popular" } = useParams<{ category: string }>();
+export const CategoryMovies = ({ category }: { category: string }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const prevCategoryRef = useRef(category);
 
-  const actualPage = category !== prevCategoryRef.current ? 1 : currentPage;
-
-  const { data, isLoading, isError } = useCategoryMovies(category, {
-    page: actualPage,
-  });
-
-  useEffect(() => {
-    if (category !== prevCategoryRef.current) {
-      prevCategoryRef.current = category;
-    }
-  }, [category]);
+  const apiCategory = category.replace("-", "_") as Category;
+  const { data, isLoading, isError } = useCategoryMovies(apiCategory, { page: currentPage });
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -43,7 +32,7 @@ export const CategoryMovies = () => {
       <div className={s["category-wrapper"]}>
         {data?.results && data.results.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
       </div>
-      <Pagination currentPage={actualPage} setCurrentPage={setCurrentPage} pagesCount={data?.total_pages || 1} />
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} pagesCount={data?.total_pages || 1} />
     </>
   );
 };

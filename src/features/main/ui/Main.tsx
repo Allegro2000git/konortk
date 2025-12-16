@@ -1,19 +1,14 @@
 import { SearchInput } from "@/features/searchInput/SearchInput";
 import { MovieSection } from "@/features/main/ui/movieSections/MovieSection";
 import s from "./Main.module.css";
-import {
-  useGetNowPlayingMoviesQuery,
-  useGetPopularMoviesQuery,
-  useGetTopRatedMoviesQuery,
-  useGetUpcomingMoviesQuery,
-} from "@/features/main/api/movieApi";
 import { getMovieBackdropPath } from "@/features/movieBackdropPath/getMovieBackdropPath";
+import { useCategoryMovies } from "@/shared/hooks/useCategoryMovies";
 
 export function Main() {
-  const { data: popularData, isLoading, isError } = useGetPopularMoviesQuery({ page: 1 });
-  const { data: topRatedData } = useGetTopRatedMoviesQuery({ page: 1 });
-  const { data: nowPlayingData } = useGetNowPlayingMoviesQuery({ page: 1 });
-  const { data: upcomingData } = useGetUpcomingMoviesQuery({ page: 1 });
+  const { data: popularData, isLoading, isError } = useCategoryMovies("popular", { page: 1 });
+  const { data: topRatedData } = useCategoryMovies("top_rated", { page: 1 });
+  const { data: nowPlayingData } = useCategoryMovies("upcoming", { page: 1 });
+  const { data: upcomingData } = useCategoryMovies("now_playing", { page: 1 });
   const movieBackdropPath = getMovieBackdropPath(popularData);
 
   const sections = [

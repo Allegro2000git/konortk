@@ -20,21 +20,25 @@ export const sharedApi = baseApi.injectEndpoints({
           page: pageParam,
         },
       }),
+      providesTags: ["Shared", "Search"],
     }),
     getMovieDetails: builder.query<GetMovieDetails, number>({
       query: (movieId: number) => ({
         url: `movie/${movieId}`,
       }),
+      providesTags: (_result, _error, id) => [{ type: "Shared", id }],
     }),
     getMovieCredits: builder.query<MovieCredits, number>({
       query: (movie_id) => ({
         url: `movie/${movie_id}/credits`,
       }),
+      providesTags: (_result, _error, id) => [{ type: "Shared", id }],
     }),
     getMoviesSimilar: builder.query<MoviesResponse, number>({
       query: (movie_id) => ({
         url: `movie/${movie_id}/similar`,
       }),
+      providesTags: (_result, _error, id) => [{ type: "Shared", id }],
     }),
   }),
 });
