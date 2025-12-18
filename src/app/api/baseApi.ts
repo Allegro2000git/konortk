@@ -3,7 +3,7 @@ import { baseQuery } from "@/app/api/baseQuery";
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  tagTypes: ["Movies", "Shared", "Popular", "Rated", "Upcoming", "Now", "Search"],
+  tagTypes: ["Movies", "Shared", "Search", "Filters", "Genre"],
   baseQuery,
   endpoints: () => ({}),
 });

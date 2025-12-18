@@ -1,0 +1,30 @@
+.sort-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.sort-label {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.select {
+    padding: 0.5rem;
+    border: 0.1rem solid var(--color-border-base);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    background-color: inherit;
+    color: inherit;
+}
+
+.select:focus {
+    outline: none;
+    border-color: var(--color-blue-600);
+}
+
+.options {
+    display: inline-block;
+    color: var(--color-white);
+}

@@ -1,5 +1,11 @@
 import type { MoviesResponse } from "@/features/main/api/movieApi.types";
-import type { GetMovieDetails, GetSearchMovies, MovieCredits } from "@/shared/api/sharedApi.types";
+import type {
+  DiscoverMoviesParams,
+  GenresResponse,
+  GetMovieDetails,
+  GetSearchMovies,
+  MovieCredits,
+} from "@/shared/api/sharedApi.types";
 import { baseApi } from "@/app/api/baseApi";
 
 export const sharedApi = baseApi.injectEndpoints({
@@ -40,6 +46,19 @@ export const sharedApi = baseApi.injectEndpoints({
       }),
       providesTags: (_result, _error, id) => [{ type: "Shared", id }],
     }),
+    getSortedMovies: builder.query<MoviesResponse, DiscoverMoviesParams>({
+      query: (params) => ({
+        url: "discover/movie",
+        params,
+      }),
+      providesTags: ["Shared", "Filters"],
+    }),
+    getMovieList: builder.query<GenresResponse, void>({
+      query: () => ({
+        url: "genre/movie/list",
+      }),
+      providesTags: ["Shared", "Genre"],
+    }),
   }),
 });
 
@@ -48,4 +67,6 @@ export const {
   useGetMovieDetailsQuery,
   useGetMovieCreditsQuery,
   useGetMoviesSimilarQuery,
+  useGetSortedMoviesQuery,
+  useGetMovieListQuery,
 } = sharedApi;

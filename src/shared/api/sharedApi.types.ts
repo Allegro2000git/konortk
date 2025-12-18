@@ -70,3 +70,30 @@ export type MovieCredits = {
   id: number;
   cast: CastMember[];
 };
+
+export type Genre = {
+  id: number;
+  name: string;
+};
+
+export type GenresResponse = {
+  genres: Genre[];
+};
+
+export type SortOption =
+  | "popularity.desc"
+  | "popularity.asc"
+  | "vote_average.desc"
+  | "vote_average.asc"
+  | "primary_release_date.desc"
+  | "primary_release_date.asc"
+  | "original_title.asc"
+  | "original_title.desc";
+
+export type DiscoverMoviesParams = {
+  sort_by?: SortOption;
+  "vote_average.gte"?: number;
+  "vote_average.lte"?: number;
+  with_genres?: string | undefined;
+  page?: number;
+};

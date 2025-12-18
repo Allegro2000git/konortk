@@ -130,3 +130,11 @@ body .light input {
     background-color: var(--color-page-background-light);
     border: 1px solid var(--color-border-base);
 }
+
+body .light aside {
+    background-color: var(--color-gray-950);
+}
+
+body .dark aside {
+    background-color: var(--color-gray-200);
+}

@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router";
 import { PageNotFound } from "@/PageNotFound";
 import { Favorites } from "@/pages/favoritePage/Favorites";
-import { FilteredMovies } from "@/FilteredMovies";
+import { FilteredMovies } from "@/pages/filteredPage/FilteredMovies";
 import { Layout } from "@/layout";
 import { MovieDetails } from "@/pages/moviePage/MovieDetails";
 import { CategoryMoviesPage } from "@/pages/categoryMoviesPage/categoryMoviesPage";

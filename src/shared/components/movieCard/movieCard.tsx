@@ -27,7 +27,7 @@ export const MovieCard = ({ movie }: Props) => {
   const dispatch = useAppDispatch();
 
   let posterUrl: string;
-  let rating: number;
+  let rating: number | undefined;
 
   if (isFavoriteMovie(movie)) {
     posterUrl = movie.posterUrl;
@@ -39,7 +39,7 @@ export const MovieCard = ({ movie }: Props) => {
     rating = movie.vote_average;
   }
 
-  const finalRating = Number(rating.toFixed(1));
+  const finalRating = rating !== undefined ? Number(rating.toFixed(1)) : 0;
   const ratingClass = getRatingClassName(finalRating);
 
   const favoriteMovieExist = favoriteMovie.some((el) => el.id === movie.id);
