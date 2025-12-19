@@ -7,7 +7,7 @@ import { useUrlFilters } from "@/shared/hooks/useUrlFilters";
 import type { SortOption } from "@/shared/api/sharedApi.types";
 
 export function FilteredMovies() {
-  const { filters, updateFilters } = useUrlFilters();
+  const { filters, updateFilters, resetFilters } = useUrlFilters();
 
   const { data } = useGetSortedMoviesQuery({
     page: filters.page,
@@ -17,6 +17,19 @@ export function FilteredMovies() {
     with_genres: filters.with_genres,
   });
   const { data: list } = useGetMovieListQuery();
+
+  const handleGenreClick = (genreId: number) => {
+    const currentGenres = filters.with_genres ? filters.with_genres.split(",").map((el) => Number(el)) : [];
+
+    const newGenres = currentGenres.includes(genreId)
+      ? currentGenres.filter((id) => id !== genreId)
+      : [...currentGenres, genreId];
+
+    updateFilters({
+      with_genres: newGenres.length > 0 ? newGenres.join(",") : undefined,
+      page: 1,
+    });
+  };
 
   const handlePageChange = (page: number) => updateFilters({ page });
 
@@ -30,15 +43,31 @@ export function FilteredMovies() {
           <SelectFilters value={filters?.sort_by || "popularity.desc"} onChange={handleSortChange} />
           <div className={s.rating}>
             <span>Rating</span>
-            <span>{`0.0 - 10.0`}</span>
+            <span>{`${filters["vote_average.gte"]?.toFixed(1)} - ${filters["vote_average.lte"]?.toFixed(1)}`}</span>
           </div>
           <section className={s.tags}>
             {list &&
-              list.genres.map((tag) => (
-                <button className={s.tag} key={tag.id}>
-                  {tag.name}
-                </button>
-              ))}
+              list.genres.map((tag) => {
+                const isSelected = filters.with_genres
+                  ? filters.with_genres
+                      .split(",")
+                      .map((el) => Number(el))
+                      .includes(tag.id)
+                  : false;
+
+                return (
+                  <button
+                    className={`${s.tag} ${isSelected ? s.selected : ""}`}
+                    key={tag.id}
+                    onClick={() => handleGenreClick(tag.id)}
+                  >
+                    {tag.name}
+                  </button>
+                );
+              })}
+            <button className={s.reset} onClick={resetFilters}>
+              Reset filters
+            </button>
           </section>
         </aside>
         <div className={s["filtered-wrapper"]}>

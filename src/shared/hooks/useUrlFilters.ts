@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { useSearchParams } from "react-router";
-import type { DiscoverMoviesParams } from "@/shared/api/sharedApi.types";
+import type { DiscoverMoviesParams, SortOption } from "@/shared/api/sharedApi.types";
 
 export const useUrlFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -8,40 +8,37 @@ export const useUrlFilters = () => {
   const filters = useMemo((): DiscoverMoviesParams => {
     const genres =
       searchParams
-        .get("genres")
+        .get("with_genres")
         ?.split(",")
-        .map((el) => Number(el)) || [];
+        .map((el) => String(el)) || [];
     return {
-      with_genres: genres.length > 0 ? genres.join(",") : undefined,
+      with_genres: ["with_genres"].length > 0 ? genres.join(",") : undefined,
       "vote_average.gte": Number(searchParams.get("vote_average.gte")) || 0,
       "vote_average.lte": Number(searchParams.get("vote_average.lte")) || 10,
-      sort_by: searchParams.get("sort_by") || "popularity.desc",
+      sort_by: (searchParams.get("sort_by") as SortOption) || "popularity.desc",
       page: Number(searchParams.get("page")) || 1,
     };
   }, [searchParams]);
 
   const updateFilters = useCallback(
-    (updates: Partial<DiscoverMoviesParams>) => {
+    (updates: DiscoverMoviesParams) => {
       setSearchParams((prev) => {
         const newParams = new URLSearchParams(prev);
 
         Object.entries(updates).forEach(([key, value]) => {
-          if (key === "genres") {
-            if (value && Array.isArray(value) && value.length > 0) {
-              newParams.set("genres", value.join(","));
-            } else {
-              newParams.delete("genres");
+          if (key === "with_genres") {
+            if (value && typeof value === "string" && value.length > 0) {
+              newParams.set("with_genres", value);
             }
-          } else if (key === "rating_min" || key === "rating_max") {
+          } else if (key === "vote_average.gte" || key === "vote_average.lte") {
             if (value !== undefined) {
               newParams.set(key, value.toString());
             }
           } else if (key === "sort_by") {
             if (value) {
-              newParams.set(key, value);
+              newParams.set(key, value.toString());
             }
           } else if (key === "page") {
-            // При изменении фильтров сбрасываем на первую страницу
             newParams.set(key, value.toString());
           }
         });
@@ -55,9 +52,9 @@ export const useUrlFilters = () => {
   const resetFilters = useCallback(() => {
     setSearchParams((prev) => {
       const newParams = new URLSearchParams(prev);
-      newParams.delete("genres");
-      newParams.delete("rating_min");
-      newParams.delete("rating_max");
+      newParams.delete("with_genres");
+      newParams.delete("vote_average.gte");
+      newParams.delete("vote_average.lte");
       newParams.set("page", "1");
       return newParams;
     });

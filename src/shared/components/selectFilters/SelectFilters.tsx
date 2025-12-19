@@ -10,8 +10,8 @@ export const SelectFilters = ({ value, onChange }: { value: SortOption; onChange
     { value: "vote_average.desc", label: "Rating ↓" },
     { value: "primary_release_date.asc", label: "Release Date ↑" },
     { value: "primary_release_date.desc", label: "Release Date ↓" },
-    { value: "title.asc", label: "Title A-Z" },
-    { value: "title.desc", label: "Title Z-A" },
+    { value: "original_title.asc", label: "Title A-Z" },
+    { value: "original_title.desc", label: "Title Z-A" },
   ];
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {

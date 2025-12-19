@@ -44,3 +44,25 @@
     color: inherit;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
+
+.tag:hover {
+    border-color: var(--color-blue-600);
+    background-color: inherit;
+    color: var(--color-blue-600);
+
+}
+
+.tag.selected {
+    background-color: var(--color-blue-600);
+    border-color: var(--color-blue-600);
+    color: var(--color-white)
+}
+
+.tag.selected:hover {
+    background-color: inherit;
+    border-color: inherit;
+}
+
+.reset {
+    transition: all 0.2s ease;
+}
