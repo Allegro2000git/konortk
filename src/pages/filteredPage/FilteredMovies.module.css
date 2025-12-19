@@ -23,12 +23,6 @@
     gap: 1rem;
 }
 
-.rating {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-}
-
 .tags {
     display: flex;
     flex-wrap: wrap;
