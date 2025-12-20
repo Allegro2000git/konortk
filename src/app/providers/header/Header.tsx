@@ -1,10 +1,11 @@
 import s from "./Header.module.css";
-import { Link, NavLink } from "react-router";
+import { Link } from "react-router";
 import { Path } from "@/app/providers/routes/Routing";
 import logo from "@/assets/vector/logo.svg";
 import { changeThemeModeAC, selectThemeMode } from "@/app/providers/theme/model/theme-slice";
 import { useAppDispatch } from "@/shared/hooks/useAppDispatch";
 import { useAppSelector } from "@/shared/hooks/useAppSelector";
+import { NavLinkButton } from "@/shared/components/navLink/NavLinkButton";
 
 export const Header = () => {
   const themeMode = useAppSelector(selectThemeMode);
@@ -34,9 +35,9 @@ export const Header = () => {
           <ul className={s.list}>
             {navItems.map((item) => (
               <li key={item.to}>
-                <NavLink to={item.to} className={s.link}>
+                <NavLinkButton variant={"header"} to={item.to}>
                   {item.label}
-                </NavLink>
+                </NavLinkButton>
               </li>
             ))}
           </ul>

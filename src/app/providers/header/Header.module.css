@@ -17,11 +17,6 @@
     flex-wrap: wrap;
 }
 
-.link {
-    color: inherit;
-    padding: 0 0.5rem;
-}
-
 .logo {
     width: 20rem;
     height: 5rem;

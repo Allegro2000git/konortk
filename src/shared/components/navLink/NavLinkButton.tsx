@@ -1,9 +1,25 @@
 import { NavLink } from "react-router";
 import s from "./NavLinkButton.module.css";
 
-export const NavLinkButton = ({ to, children }) => {
+export const NavLinkButton = ({ to, children, variant }) => {
+  const getClassName = ({ isActive }) => {
+    const classes = [s.link];
+
+    if (variant === "header") {
+      classes.push(s.header);
+    } else {
+      classes.push(s.category);
+    }
+
+    if (isActive) {
+      classes.push(s.active);
+    }
+
+    return classes.join(" ");
+  };
+
   return (
-    <NavLink to={to} className={({ isActive }) => (isActive ? `${s.link} ${s.active}` : s.link)}>
+    <NavLink to={to} className={getClassName}>
       {children}
     </NavLink>
   );
