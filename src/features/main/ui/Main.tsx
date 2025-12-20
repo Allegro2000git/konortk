@@ -52,13 +52,13 @@ export function Main() {
             : "",
         }}
       >
-        <div className={s.container}>
+        <div className={s["cover-container"]}>
           <h1>Welcome</h1>
           <h3 className={s.subtitle}>Browse highlighted titles from TMDB</h3>
           <SearchInput isSearchButtonActive={true} />
         </div>
       </div>
-      <section className={s.container}>
+      <section className={s["cover-container"]}>
         {sections.map((section, index) => (
           <MovieSection key={index} title={section.title} movies={section.movies} category={section.category} />
         ))}

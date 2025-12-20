@@ -1,17 +1,11 @@
 .cover {
-    width: 100vw;
     height: 75vh;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
-    position: relative;
     background-size: cover;
+    overflow-x: hidden;
 }
 
-.cover::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-}
 
 .subtitle {
     margin: 1rem 0;
@@ -20,8 +14,8 @@
     color: var(--color-white);
 }
 
-.container {
+.cover-container {
     max-width: 1250px;
     margin: 0 auto;
-    padding-top: 6rem;
+    padding: 5rem 1rem 0;
 }

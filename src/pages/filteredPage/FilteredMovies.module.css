@@ -3,17 +3,21 @@
     margin: 1rem 0;
     gap: 1rem;
     justify-content: space-between;
-    align-items: start;
+    position: relative;
 }
 
 .filters {
+    position: sticky;
+    top: 0;
     display: flex;
     flex-direction: column;
+    align-self: start;
     gap: 0.5rem;
     padding: 0.5rem;
+    width: 25%;
+    min-width: 12rem;
+    max-width: 18rem;
     border-radius: 0.5rem;
-    flex-shrink: 0;
-    width: 18rem;
 }
 
 .filtered-wrapper {
@@ -43,7 +47,7 @@
     border-color: var(--color-blue-600);
     background-color: inherit;
     color: var(--color-blue-600);
-
+    cursor: pointer;
 }
 
 .tag.selected {
@@ -59,4 +63,10 @@
 
 .reset {
     transition: all 0.2s ease;
+    margin: 1rem auto;
+    background-color: var(--color-blue-600);
+    padding: 0.5rem;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
 }
