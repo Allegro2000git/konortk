@@ -1,5 +1,5 @@
 import { SearchInput } from "@/features/searchInput/SearchInput";
-import { MovieSection } from "@/features/main/ui/movieSections/MovieSection";
+import { MovieSection } from "@/features/movieSections/MovieSection";
 import s from "./Main.module.css";
 import { getMovieBackdropPath } from "@/features/movieBackdropPath/getMovieBackdropPath";
 import { useCategoryMovies } from "@/shared/hooks/useCategoryMovies";
