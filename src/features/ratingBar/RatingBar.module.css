@@ -1,4 +1,63 @@
-.rating {
+.rating-header {
     display: flex;
     justify-content: space-between;
+}
+
+.slider-container[data-no-global-styles="true"] input {
+    background-color: transparent;
+    border: none;
+}
+
+.slider-container {
+    position: relative;
+    height: 0.1rem;
+    margin: 1.5rem 1rem;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+}
+
+.track {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-color: var(--color-border-base);
+    border-radius: 0.3rem;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.progress {
+    position: absolute;
+    height: 5px;
+    background-color: var(--color-blue-600);
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 4;
+}
+
+.slider {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+    appearance: none;
+    background: transparent;
+    z-index: 4;
+}
+
+.slider::-webkit-slider-runnable-track {
+    background: transparent;
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--color-blue-600);
+    cursor: pointer;
+    pointer-events: all;
 }

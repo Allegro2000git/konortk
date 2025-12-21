@@ -2,6 +2,8 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /* Prevent font size inflation */
@@ -30,6 +32,11 @@ ol {
     list-style: none;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 /* Set core body defaults */
 body {
     min-width: 320px;
@@ -53,6 +60,8 @@ label {
     line-height: 1.2;
     margin: 0;
     padding: 0;
+    background: none;
+    outline: none;
 }
 
 /* Balance text wrapping on headings */
@@ -107,11 +116,11 @@ body .light {
 }
 
 body .light header {
-    border-bottom: 2px solid var(--color-gray-800);
+    border-bottom:  solid var(--color-gray-800);
 }
 
 body .light footer {
-    border-top: 2px solid var(--color-gray-800);
+    border-top: 0.2rem solid var(--color-gray-800);
 }
 
 body .dark {
@@ -120,16 +129,16 @@ body .dark {
 }
 
 body .dark header {
-    border-bottom: 2px solid var(--color-gray-350);
+    border-bottom: 0.2rem solid var(--color-gray-350);
 }
 
 body .dark footer {
-    border-top: 2px solid var(--color-gray-350);
+    border-top: 0.2rem solid var(--color-gray-350);
 }
 
 body .light input {
     background-color: var(--color-page-background-light);
-    border: 1px solid var(--color-border-base);
+    border: 0.1rem solid var(--color-border-base);
 }
 
 body .light aside {
