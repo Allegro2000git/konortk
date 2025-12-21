@@ -7,7 +7,7 @@ export const NavLinkButton = ({ to, children, variant }) => {
 
     if (variant === "header") {
       classes.push(s.header);
-    } else {
+    } else if (variant === "category") {
       classes.push(s.category);
     }
 

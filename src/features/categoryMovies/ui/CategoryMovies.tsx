@@ -23,10 +23,18 @@ export const CategoryMovies = ({ category }: { category: string }) => {
   return (
     <>
       <nav className={s.links}>
-        <NavLinkButton to="/movies/popular">Popular Movies</NavLinkButton>
-        <NavLinkButton to="/movies/top-rated">Top Rated Movies</NavLinkButton>
-        <NavLinkButton to="/movies/upcoming">Upcoming Movies</NavLinkButton>
-        <NavLinkButton to="/movies/now-playing">Now Playing Movies</NavLinkButton>
+        <NavLinkButton variant={"category"} to="/movies/popular">
+          Popular Movies
+        </NavLinkButton>
+        <NavLinkButton variant={"category"} to="/movies/top-rated">
+          Top Rated Movies
+        </NavLinkButton>
+        <NavLinkButton variant={"category"} to="/movies/upcoming">
+          Upcoming Movies
+        </NavLinkButton>
+        <NavLinkButton variant={"category"} to="/movies/now-playing">
+          Now Playing Movies
+        </NavLinkButton>
       </nav>
       <h3>{category} movies</h3>
       <div className={s["category-wrapper"]}>

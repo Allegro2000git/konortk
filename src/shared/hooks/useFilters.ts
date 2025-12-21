@@ -1,5 +1,6 @@
-import { useCallback, useState } from "react";
-import type { DiscoverMoviesParams } from "@/shared/api/sharedApi.types";
+import { useCallback, useMemo } from "react";
+import type { DiscoverMoviesParams, SortOption } from "@/shared/api/sharedApi.types";
+import { useSearchParams } from "react-router";
 
 const DEFAULT_FILTERS: DiscoverMoviesParams = {
   page: 1,
@@ -10,23 +11,42 @@ const DEFAULT_FILTERS: DiscoverMoviesParams = {
 };
 
 export const useFilters = () => {
-  const [filters, setFilters] = useState<DiscoverMoviesParams>(DEFAULT_FILTERS);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const updateFilters = useCallback((updates: Partial<DiscoverMoviesParams>) => {
-    setFilters((prev) => {
-      const newFilters = { ...prev, ...updates };
+  const filters = useMemo(() => {
+    return {
+      page: Number(searchParams.get("page")) || DEFAULT_FILTERS.page,
+      sort_by: (searchParams.get("sort_by") as SortOption) || DEFAULT_FILTERS.sort_by,
+      "vote_average.gte": Number(searchParams.get("vote_average.gte")) || DEFAULT_FILTERS["vote_average.gte"],
+      "vote_average.lte": Number(searchParams.get("vote_average.lte")) || DEFAULT_FILTERS["vote_average.lte"],
+      with_genres: searchParams.get("with_genres") || undefined,
+    };
+  }, [searchParams]);
 
-      const hasNonPageUpdate = Object.keys(updates).some((key) => key !== "page");
-      if (hasNonPageUpdate) {
-        newFilters.page = 1;
+  const updateFilters = useCallback(
+    (updates: Partial<DiscoverMoviesParams>) => {
+      const newParams = new URLSearchParams(searchParams);
+
+      for (const [key, value] of Object.entries(updates)) {
+        if (value === undefined) {
+          newParams.delete(key);
+        } else {
+          newParams.set(key, String(value));
+        }
       }
 
-      return newFilters;
-    });
-  }, []);
+      const changedNonePageParams = Object.keys(updates).some((k) => k !== "page");
+      if (changedNonePageParams) {
+        newParams.set("page", "1");
+      }
+
+      setSearchParams(newParams);
+    },
+    [searchParams, setSearchParams]
+  );
 
   const resetFilters = useCallback(() => {
-    setFilters(DEFAULT_FILTERS);
+    setSearchParams(new URLSearchParams());
   }, []);
 
   return {
