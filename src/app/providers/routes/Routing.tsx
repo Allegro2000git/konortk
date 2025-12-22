@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router";
-import { PageNotFound } from "@/PageNotFound";
+import { NotFound } from "@/pages/notFound/NotFound";
 import { Favorites } from "@/pages/favoritePage/Favorites";
 import { FilteredMovies } from "@/pages/filteredPage/FilteredMovies";
 import { Layout } from "@/layout";
@@ -30,7 +30,7 @@ export const Routing = () => {
         <Route path={Path.Search} element={<Search />} />
         <Route path={Path.Favorites} element={<Favorites />} />
 
-        <Route path={Path.NotFound} element={<PageNotFound />} />
+        <Route path={Path.NotFound} element={<NotFound />} />
       </Route>
     </Routes>
   );

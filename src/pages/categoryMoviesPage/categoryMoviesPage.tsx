@@ -1,4 +1,4 @@
-import { CategoryMovies } from "@/features/categoryMovies/ui/CategoryMovies";
+import { CategoryMovies } from "@/features/categoryMovies/CategoryMovies";
 import { useParams } from "react-router";
 
 export const CategoryMoviesPage = () => {
