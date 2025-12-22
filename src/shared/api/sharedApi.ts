@@ -26,7 +26,7 @@ export const sharedApi = baseApi.injectEndpoints({
           page: pageParam,
         },
       }),
-      providesTags: ["Shared", "Search"],
+      providesTags: ["Search"],
     }),
     getMovieDetails: builder.query<GetMovieDetails, number>({
       query: (movieId: number) => ({
@@ -51,13 +51,13 @@ export const sharedApi = baseApi.injectEndpoints({
         url: "discover/movie",
         params,
       }),
-      providesTags: ["Shared", "Filters"],
+      providesTags: ["Filters"],
     }),
     getMovieList: builder.query<GenresResponse, void>({
       query: () => ({
         url: "genre/movie/list",
       }),
-      providesTags: ["Shared", "Genre"],
+      providesTags: ["Genres"],
     }),
   }),
 });

@@ -1,6 +1,6 @@
 import type { MoviesResponse } from "@/features/main/api/movieApi.types";
 
-export const getMovieBackdropPath = (data?: MoviesResponse) => {
+export const useMovieBackdropPath = (data?: MoviesResponse) => {
   if (!data?.results || data.results.length === 0) {
     return;
   }

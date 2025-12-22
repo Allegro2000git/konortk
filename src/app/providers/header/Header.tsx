@@ -3,9 +3,8 @@ import { Link } from "react-router";
 import { Path } from "@/app/providers/routes/Routing";
 import logo from "@/assets/vector/logo.svg";
 import { changeThemeModeAC, selectThemeMode } from "@/app/providers/theme/model/theme-slice";
-import { useAppDispatch } from "@/shared/hooks/useAppDispatch";
-import { useAppSelector } from "@/shared/hooks/useAppSelector";
 import { NavLinkButton } from "@/shared/components/navLink/NavLinkButton";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks";
 
 export const Header = () => {
   const themeMode = useAppSelector(selectThemeMode);

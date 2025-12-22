@@ -1,15 +1,15 @@
 import { SearchInput } from "@/features/searchInput/SearchInput";
 import { MovieSection } from "@/features/movieSections/MovieSection";
 import s from "./Main.module.css";
-import { getMovieBackdropPath } from "@/features/movieBackdropPath/getMovieBackdropPath";
-import { useCategoryMovies } from "@/shared/hooks/useCategoryMovies";
+import { useMovieBackdropPath } from "@/shared/hooks";
+import { useCategoryMovies } from "@/shared/hooks";
 
 export function Main() {
   const { data: popularData, isLoading, isError } = useCategoryMovies("popular", { page: 1 });
   const { data: topRatedData } = useCategoryMovies("top_rated", { page: 1 });
   const { data: nowPlayingData } = useCategoryMovies("upcoming", { page: 1 });
   const { data: upcomingData } = useCategoryMovies("now_playing", { page: 1 });
-  const movieBackdropPath = getMovieBackdropPath(popularData);
+  const movieBackdropPath = useMovieBackdropPath(popularData);
 
   const sections = [
     {

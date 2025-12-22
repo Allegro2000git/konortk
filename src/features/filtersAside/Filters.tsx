@@ -2,7 +2,7 @@ import s from "./Filters.module.css";
 import { SelectFilters } from "@/shared/components/selectFilters/SelectFilters";
 import { RatingBar } from "@/features/ratingBar/RatingBar";
 import type { DiscoverMoviesParams, SortOption } from "@/shared/api/sharedApi.types";
-import { useRatingDebounce } from "@/shared/hooks/useRatingDebounce";
+import { useRatingDebounce } from "@/shared/hooks";
 import { GenresList } from "@/features/genresList/GenresList";
 import { memo } from "react";
 
@@ -37,10 +37,10 @@ export const Filters = memo(({ filters, updateFilters, resetFilters }: Props) =>
       />
       <section className={s.tags}>
         <GenresList filters={filters} updateFilters={updateFilters} />
-        <button className={s.reset} onClick={resetFilters}>
-          Reset filters
-        </button>
       </section>
+      <button className={s.reset} onClick={resetFilters}>
+        Reset filters
+      </button>
     </aside>
   );
 });

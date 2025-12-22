@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { type FavoriteMovie, selectFavorite } from "@/features/toggleFavoriteMovie/model/favorite-movie-slice";
-import { useAppSelector } from "@/shared/hooks/useAppSelector";
+import { useAppSelector } from "@/shared/hooks";
 
 export function useFavorites() {
   const favoriteMovieStorage = useAppSelector(selectFavorite);
