@@ -1,7 +1,7 @@
 import { Outlet } from "react-router";
-import { Header } from "@/app/providers/header";
+import { Header } from "@/shared/components";
 import s from "./Layout.module.css";
-import { useAppSelector } from "@/shared/hooks/useAppSelector";
+import { useAppSelector } from "@/shared/hooks";
 import { selectThemeMode } from "@/app/providers/theme/model/theme-slice";
 
 export const Layout = () => {

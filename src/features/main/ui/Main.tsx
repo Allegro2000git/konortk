@@ -1,8 +1,7 @@
 import { SearchInput } from "@/features/searchInput/SearchInput";
 import { MovieSection } from "@/features/movieSections/MovieSection";
 import s from "./Main.module.css";
-import { useMovieBackdropPath } from "@/shared/hooks";
-import { useCategoryMovies } from "@/shared/hooks";
+import { useCategoryMovies, useMovieBackdropPath } from "@/shared/hooks";
 
 export function Main() {
   const { data: popularData, isLoading, isError } = useCategoryMovies("popular", { page: 1 });
@@ -39,7 +38,7 @@ export function Main() {
   }
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <h2>Skeleton loader...</h2>;
   }
 
   return (

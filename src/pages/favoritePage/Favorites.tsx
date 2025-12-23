@@ -1,5 +1,5 @@
 import s from "./Favorites.module.css";
-import { MovieCard } from "@/shared/components/movieCard";
+import { MovieCard } from "@/shared/components";
 import { useFavorites } from "@/shared/hooks";
 
 export function Favorites() {

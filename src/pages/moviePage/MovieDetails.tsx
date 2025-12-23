@@ -2,7 +2,7 @@ import { useGetMovieCreditsQuery, useGetMovieDetailsQuery, useGetMoviesSimilarQu
 import { useNavigate, useParams } from "react-router";
 import s from "./MovieDetails.module.css";
 import ratingStyles from "@/shared/styles/RatingBadge/RatingBadge.module.css";
-import { MovieCard } from "@/shared/components/movieCard";
+import { MovieCard } from "@/shared/components";
 import { Path } from "@/app/providers/routes/Routing";
 import { getRatingClassName } from "@/shared/utils";
 

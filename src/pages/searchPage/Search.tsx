@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router";
 import { SearchInput } from "@/features/searchInput/SearchInput";
-import { MovieCard } from "@/shared/components/movieCard";
+import { MovieCard } from "@/shared/components";
 import s from "./Search.module.css";
 import { useGetSearchMoviesInfiniteQuery } from "@/shared/api/sharedApi";
 import { useEffect, useRef } from "react";

@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { Path } from "@/app/providers/routes/Routing";
 import logo from "@/assets/vector/logo.svg";
 import { changeThemeModeAC, selectThemeMode } from "@/app/providers/theme/model/theme-slice";
-import { NavLinkButton } from "@/shared/components/navLink/NavLinkButton";
+import { NavLinkButton } from "@/shared/components";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks";
 
 export const Header = () => {

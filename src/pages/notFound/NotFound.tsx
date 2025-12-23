@@ -1,4 +1,4 @@
-import { NavLinkButton } from "@/shared/components/navLink/NavLinkButton";
+import { NavLinkButton } from "@/shared/components";
 import s from "./NotFound.module.css";
 import not from "@/assets/images/notFound.jpg";
 

@@ -2,8 +2,6 @@ import { Link } from "react-router";
 import s from "./MovieCard.module.css";
 import type { Movie } from "@/features/main/api/movieApi.types";
 import ratingStyles from "@/shared/styles/RatingBadge/RatingBadge.module.css";
-import { useAppSelector } from "@/shared/hooks/useAppSelector";
-import { useAppDispatch } from "@/shared/hooks/useAppDispatch";
 import {
   toggleFavoriteAC,
   type FavoriteMovie,
@@ -11,6 +9,7 @@ import {
 } from "@/features/toggleFavoriteMovie/model/favorite-movie-slice";
 import * as React from "react";
 import { getRatingClassName } from "@/shared/utils";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks";
 
 type MovieCardData = Movie | FavoriteMovie;
 

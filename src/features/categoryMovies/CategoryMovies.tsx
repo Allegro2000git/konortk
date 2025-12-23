@@ -1,10 +1,8 @@
-import { MovieCard } from "@/shared/components/movieCard";
 import s from "./CategoryMovies.module.css";
-import { NavLinkButton } from "@/shared/components/navLink/NavLinkButton";
-import { Pagination } from "@/shared/components/pagination/Pagination";
 import { useState } from "react";
 import type { Category } from "@/features/main/api/movieApi";
 import { useCategoryMovies } from "@/shared/hooks";
+import { MovieCard, NavLinkButton, Pagination } from "@/shared/components";
 
 export const CategoryMovies = ({ category }: { category: string }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);

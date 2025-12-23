@@ -1,9 +1,8 @@
 import s from "./FilteredMovies.module.css";
-import { MovieCard } from "@/shared/components/movieCard";
-import { Pagination } from "@/shared/components/pagination/Pagination";
 import { useGetSortedMoviesQuery } from "@/shared/api/sharedApi";
 import { useFilters } from "@/shared/hooks";
 import { Filters } from "@/features/filtersAside/Filters";
+import { MovieCard, Pagination } from "@/shared/components";
 
 export function FilteredMovies() {
   const { filters, updateFilters, resetFilters } = useFilters();
