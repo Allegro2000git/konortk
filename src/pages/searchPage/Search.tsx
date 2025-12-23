@@ -43,7 +43,6 @@ export function Search() {
   }, [hasNextPage, isFetching, query]);
 
   const dataResults = data?.pages.flatMap((page) => page.results || []) ?? [];
-
   return (
     <div>
       <h2 className={s.title}>Search Results</h2>
@@ -53,16 +52,22 @@ export function Search() {
         <>
           <h3 className={s["results-title"]}>Results for "{query}"</h3>
           <div className={s["search-page-wrapper"]}>
-            {dataResults && dataResults.length > 0 ? (
-              dataResults.map((movie) => <MovieCard key={movie.id} movie={movie} />)
+            {isFetching && dataResults.length === 0 ? (
+              <div>Loading...</div>
+            ) : dataResults.length > 0 ? (
+              <>
+                {dataResults.map((movie, index) => (
+                  <MovieCard key={`${movie.id} -${index}`} movie={movie} />
+                ))}
+                <div ref={loadMore} style={{ height: 20 }} />
+              </>
             ) : (
-              <div>No movies found</div>
+              <p>No movies found</p>
             )}
-            <div ref={loadMore} style={{ height: 20 }} />
           </div>
         </>
       ) : (
-        <div className={s.enter}>Enter a movie title to start searching.</div>
+        <p className={s.enter}>Enter a movie title to start searching.</p>
       )}
     </div>
   );

@@ -4,7 +4,7 @@ import s from "./Main.module.css";
 import { useCategoryMovies, useMovieBackdropPath } from "@/shared/hooks";
 
 export function Main() {
-  const { data: popularData, isLoading, isError } = useCategoryMovies("popular", { page: 1 });
+  const { data: popularData, isLoading } = useCategoryMovies("popular", { page: 1 });
   const { data: topRatedData } = useCategoryMovies("top_rated", { page: 1 });
   const { data: nowPlayingData } = useCategoryMovies("upcoming", { page: 1 });
   const { data: upcomingData } = useCategoryMovies("now_playing", { page: 1 });
@@ -32,10 +32,6 @@ export function Main() {
       category: "now-playing",
     },
   ];
-
-  if (isError) {
-    return <div>Some error occurred...</div>;
-  }
 
   if (isLoading) {
     return <h2>Skeleton loader...</h2>;

@@ -1,15 +1,17 @@
 import { Outlet } from "react-router";
-import { Header } from "@/shared/components";
+import { Header, LinearProgress } from "@/shared/components";
 import s from "./Layout.module.css";
-import { useAppSelector } from "@/shared/hooks";
+import { useAppSelector, useQueryGlobalLoading } from "@/shared/hooks";
 import { selectThemeMode } from "@/app/providers/theme/model/theme-slice";
 
 export const Layout = () => {
   const themeMode = useAppSelector(selectThemeMode);
+  const isGlobalLoading = useQueryGlobalLoading();
 
   return (
     <div className={`${s.layout} ${themeMode}`}>
       <Header />
+      {isGlobalLoading && <LinearProgress />}
       <main className={s.main}>
         <div className={s.container}>
           <Outlet />

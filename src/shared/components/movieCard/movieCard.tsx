@@ -10,6 +10,7 @@ import {
 import * as React from "react";
 import { getRatingClassName } from "@/shared/utils";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks";
+import { memo } from "react";
 
 type MovieCardData = Movie | FavoriteMovie;
 
@@ -21,7 +22,7 @@ type Props = {
   movie: MovieCardData;
 };
 
-export const MovieCard = ({ movie }: Props) => {
+export const MovieCard = memo(({ movie }: Props) => {
   const favoriteMovie = useAppSelector(selectFavorite);
   const dispatch = useAppDispatch();
 
@@ -67,4 +68,4 @@ export const MovieCard = ({ movie }: Props) => {
       <button className={`${s.favorite} ${favoriteMovieExist ? s.active : ""}`} onClick={handleToggleFavoriteClick} />
     </div>
   );
-};
+});

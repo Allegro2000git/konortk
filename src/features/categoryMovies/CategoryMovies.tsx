@@ -8,15 +8,7 @@ export const CategoryMovies = ({ category }: { category: string }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const apiCategory = category.replace("-", "_") as Category;
-  const { data, isLoading, isError } = useCategoryMovies(apiCategory, { page: currentPage });
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Some error occurred...</div>;
-  }
+  const { data } = useCategoryMovies(apiCategory, { page: currentPage });
 
   return (
     <>
