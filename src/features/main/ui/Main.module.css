@@ -3,6 +3,7 @@
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     background-size: cover;
+    background-color: var(--color-gray-300);
     overflow-x: hidden;
 }
 
