@@ -10,11 +10,10 @@ export function Search() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("query") || "";
 
-  const { data, isFetching, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useGetSearchMoviesInfiniteQuery({
-      query,
-      page: 1,
-    });
+  const { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetSearchMoviesInfiniteQuery({
+    query,
+    page: 1,
+  });
   const loadMore = useRef<HTMLDivElement | null>(null);
 
   const handleNextPage = async () => {
@@ -55,23 +54,10 @@ export function Search() {
           <h3 className={s["results-title"]}>Results for "{query}"</h3>
           <div className={s["search-page-wrapper"]}>
             {isFetching && dataResults.length === 0 ? (
-              isLoading &&
-              Array.from({ length: 5 }).map((_, index) => (
+              Array.from({ length: 20 }).map((_, index) => (
                 <div key={`skeleton-${index}`}>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(5, 1fr))",
-                      gap: "1rem",
-                    }}
-                  >
-                    {Array.from({ length: 4 }).map((_, index) => (
-                      <div key={`movie-${index}`} style={{ marginBottom: "2rem" }}>
-                        <Skeleton height={300} style={{ marginBottom: "1rem" }} />
-                        <Skeleton width={100} height={20} />
-                      </div>
-                    ))}
-                  </div>
+                  <Skeleton height={300} style={{ marginBottom: "1rem" }} />
+                  <Skeleton width={100} height={20} />
                 </div>
               ))
             ) : dataResults.length > 0 ? (
