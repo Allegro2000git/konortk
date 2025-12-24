@@ -72,13 +72,14 @@ export function Main() {
                 <div
                   style={{
                     display: "grid",
-                    gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))",
+                    gridTemplateColumns: "repeat(6, 1fr)",
                     gap: "1rem",
+                    whiteSpace: "nowrap",
                   }}
                 >
                   {Array.from({ length: 6 }).map((_, index) => (
                     <div key={`movie-${index}`} style={{ marginBottom: "2rem" }}>
-                      <Skeleton height={250} style={{ marginBottom: "1rem" }} />
+                      <Skeleton height={240} style={{ marginBottom: "1rem" }} />
                       <Skeleton width={125} height={20} />
                     </div>
                   ))}

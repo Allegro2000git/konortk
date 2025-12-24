@@ -1,13 +1,10 @@
 .favorite {
     position: absolute;
-    bottom: 4rem;
-    right: 1rem;
+    top: 1rem;
+    right: 0.5rem;
     width: 2.5rem;
     height: 2.5rem;
     font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border-radius: 50%;
     background-color: rgb(15 23 42 / 60%);
     cursor: pointer;
@@ -63,6 +60,5 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-weight: 400;
     margin: 0.5rem 0;
 }
