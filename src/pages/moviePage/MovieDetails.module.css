@@ -38,6 +38,7 @@
     flex-wrap: wrap;
     gap: 1rem;
     color: inherit;
+    margin-top: 0.5rem;
 }
 
 .release {
@@ -56,43 +57,4 @@
     color: inherit;
     text-align: left;
     padding: 1rem 0;
-}
-
-.cast-grid {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 2rem;
-}
-
-.actor-card {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 1rem 0;
-}
-
-.actor-photo {
-    width: 160px;
-    height: 160px;
-    overflow: hidden;
-    object-fit: cover;
-    border-radius: 50%;
-    background-color: var(--color-gray-200);
-    border: 0.1rem solid var(--color-gray-600);
-}
-
-.actor-character {
-    font-size: 0.9rem;
-    color: var(--color-gray-600);
-}
-
-.similar {
-    margin: 2rem 0;
-}
-
-.similar-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 1.5rem;
-    margin: 1rem 0;
 }

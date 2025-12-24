@@ -5,6 +5,7 @@ import s from "./Search.module.css";
 import { useGetSearchMoviesInfiniteQuery } from "@/shared/api/sharedApi";
 import { useEffect, useRef } from "react";
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export function Search() {
   const [searchParams] = useSearchParams();

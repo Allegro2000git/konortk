@@ -1,8 +1,16 @@
 import { NavLink } from "react-router";
 import s from "./NavLinkButton.module.css";
+import type { MouseEvent, ReactNode } from "react";
 
-export const NavLinkButton = ({ to, children, variant }) => {
-  const getClassName = ({ isActive }) => {
+type Props = {
+  variant: "header" | "category";
+  to: string;
+  children: ReactNode;
+  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
+};
+
+export const NavLinkButton = ({ to, children, variant, onClick }: Props) => {
+  const getClassName = ({ isActive }: { isActive: boolean }) => {
     const classes = [s.link];
 
     if (variant === "header") {
@@ -21,7 +29,7 @@ export const NavLinkButton = ({ to, children, variant }) => {
   };
 
   return (
-    <NavLink to={to} className={getClassName}>
+    <NavLink to={to} className={getClassName} onClick={onClick}>
       {children}
     </NavLink>
   );

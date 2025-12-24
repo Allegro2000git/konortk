@@ -1,43 +1,29 @@
-import { useGetMovieCreditsQuery, useGetMovieDetailsQuery, useGetMoviesSimilarQuery } from "@/shared/api/sharedApi";
+import { useGetMovieDetailsQuery } from "@/shared/api/sharedApi";
 import { useNavigate, useParams } from "react-router";
 import s from "./MovieDetails.module.css";
 import ratingStyles from "@/shared/styles/RatingBadge/RatingBadge.module.css";
-import { MovieCard } from "@/shared/components";
+import { NavLinkButton } from "@/shared/components";
 import { Path } from "@/app/providers/routes/Routing";
 import { getRatingClassName } from "@/shared/utils";
+import { MainCastList } from "@/features/mainCastList/MainCastList";
+import { SimilarMovieList } from "@/features/similarMovieList/SimilarMovieList";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export const MovieDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const movieId = id ? parseInt(id, 10) : 0;
 
-  const { data, isError, isLoading } = useGetMovieDetailsQuery(movieId, {
+  const { data, isLoading } = useGetMovieDetailsQuery(movieId, {
     skip: !movieId,
   });
-
-  const { data: creditsData } = useGetMovieCreditsQuery(movieId);
-  const { data: similar } = useGetMoviesSimilarQuery(movieId);
-
-  if (isError) {
-    return <div>Some occurred error</div>;
-  }
-
-  if (isLoading) {
-    return <div>Loading movie details...</div>;
-  }
-
-  if (!data) {
-    return <div>Movie not found</div>;
-  }
-
-  const rating = Number(data.vote_average.toFixed(1));
+  const rating = Number(data?.vote_average.toFixed(1));
   const ratingClass = getRatingClassName(rating);
 
-  const posterUrl = data.poster_path
+  const posterUrl = data?.poster_path
     ? `https://image.tmdb.org/t/p/w342${data.poster_path}`
     : "https://placehold.co/280x420?text=No+Poster";
-
-  const mainCast = creditsData?.cast.filter((actor) => actor.known_for_department === "Acting").slice(0, 6) || [];
 
   const onClickBackHandler = () => {
     if (window.history.length > 1) {
@@ -48,55 +34,37 @@ export const MovieDetails = () => {
   };
 
   return (
-    <section>
-      <div className={s.info}>
-        <img src={posterUrl} alt={"movie poster"} className={s["poster-info"]} />
-        <div>
-          <div className={s.top}>
-            <h2 className={s.title}>{data.title}</h2>
-            <button className={s.button} onClick={onClickBackHandler}>
-              back
-            </button>
+    <div>
+      {isLoading ? (
+        <div style={{ display: "flex", margin: "2rem 0", gap: "2rem" }}>
+          <Skeleton height={400} width={250} />
+          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <Skeleton width={350} height={75} />
+            <Skeleton width={900} height={200} />
           </div>
-          <div className={s.meta}>
-            <h5 className={s.release}>Release year: {new Date(data.release_date).getFullYear()}</h5>
-            <span className={`${s.rating} ${ratingStyles[ratingClass]}`}>{rating}</span>
-            <span>Runtime: {data.runtime}m</span>
-          </div>
-          <p className={s.text}>{data.overview}</p>
-          <div>Genres: {data.genres?.map((g) => g.name).join(", ")}</div>
         </div>
-      </div>
-      <section>
-        <h3>Cast:</h3>
-        <div className={s["cast-grid"]}>
-          {mainCast.map((actor) => {
-            const actorPhotoUrl = actor.profile_path
-              ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`
-              : "https://placehold.co/150x225?text=No+Photo";
-
-            return (
-              <div key={actor.id} className={s["actor-card"]}>
-                <img src={actorPhotoUrl} alt={actor.name} className={s["actor-photo"]} />
-                <div>
-                  <p>{actor.name}</p>
-                  <p className={s["actor-character"]}>{actor.character}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-      {similar?.results && similar.results.length > 0 && (
-        <section className={s.similar}>
-          <h3>Similar Movies</h3>
-          <div className={s["similar-grid"]}>
-            {similar.results.slice(0, 6).map((movie) => (
-              <MovieCard key={movie.id} movie={movie} />
-            ))}
+      ) : (
+        <div className={s.info}>
+          <img src={posterUrl} alt={"movie poster"} className={s["poster-info"]} />
+          <div>
+            <div className={s.top}>
+              <h2 className={s.title}>{data?.title}</h2>
+              <NavLinkButton to={""} variant={"category"} onClick={onClickBackHandler}>
+                back
+              </NavLinkButton>
+            </div>
+            <div className={s.meta}>
+              <h5 className={s.release}>Release year: {new Date(data!.release_date).getFullYear()}</h5>
+              <span className={`${s.rating} ${ratingStyles[ratingClass]}`}>{rating}</span>
+              <span>Runtime: {data?.runtime}m</span>
+            </div>
+            <p className={s.text}>{data?.overview}</p>
+            <div>Genres: {data?.genres?.map((g) => g.name).join(", ")}</div>
           </div>
-        </section>
+        </div>
       )}
-    </section>
+      <MainCastList movieId={movieId} />
+      <SimilarMovieList movieId={movieId} />
+    </div>
   );
 };

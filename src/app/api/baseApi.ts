@@ -6,7 +6,7 @@ export const baseApi = createApi({
   tagTypes: ["Movies", "Shared", "Search", "Filters", "Genres"],
   endpoints: () => ({}),
   baseQuery: async (args, api, extraOptions) => {
-    await new Promise((resolve) => setTimeout(resolve, 6000));
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     const result = await fetchBaseQuery({
       baseUrl: import.meta.env.VITE_BASE_URL,
       prepareHeaders: (headers) => {

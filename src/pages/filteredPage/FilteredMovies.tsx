@@ -4,6 +4,7 @@ import { useFilters } from "@/shared/hooks";
 import { Filters } from "@/features/filtersAside/Filters";
 import { MovieCard, Pagination } from "@/shared/components";
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export function FilteredMovies() {
   const { filters, updateFilters, resetFilters } = useFilters();

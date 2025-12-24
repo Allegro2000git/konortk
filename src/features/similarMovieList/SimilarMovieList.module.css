@@ -1,0 +1,10 @@
+.similar {
+    margin: 2rem 0;
+}
+
+.similar-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+    margin: 1rem 0;
+}

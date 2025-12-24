@@ -49,11 +49,11 @@ export function Main() {
       >
         <div className={s["cover-container"]}>
           {isSectionLoading ? (
-            <>
+            <div style={{ marginTop: "5rem" }}>
               <Skeleton width={200} height={40} />
               <Skeleton width={300} height={24} style={{ margin: "1rem 0" }} />
               <Skeleton width={500} height={40} />
-            </>
+            </div>
           ) : (
             <>
               <h1>Welcome</h1>

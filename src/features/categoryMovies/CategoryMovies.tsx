@@ -4,6 +4,7 @@ import type { Category } from "@/features/main/api/movieApi";
 import { useCategoryMovies } from "@/shared/hooks";
 import { MovieCard, NavLinkButton, Pagination } from "@/shared/components";
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export const CategoryMovies = ({ category }: { category: string }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
