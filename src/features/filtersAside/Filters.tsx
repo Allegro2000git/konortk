@@ -1,10 +1,10 @@
 import s from "./Filters.module.css";
 import { SelectFilters } from "@/shared/components";
 import { RatingBar } from "@/features/ratingBar/RatingBar";
-import type { DiscoverMoviesParams, SortOption } from "@/shared/api/sharedApi.types";
 import { useRatingDebounce } from "@/shared/hooks";
 import { GenresList } from "@/features/genresList/GenresList";
 import { memo } from "react";
+import type { DiscoverMoviesParams, SortOption } from "@/shared/types";
 
 type Props = {
   filters: DiscoverMoviesParams;

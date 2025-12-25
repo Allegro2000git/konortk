@@ -23,7 +23,7 @@ export type SearchMoviesParams = MoviesCategoryParams & {
   query: string;
   include_adult?: boolean;
   primary_release_year?: string;
-  year: string;
+  year?: string;
 };
 
 export type SortOption =

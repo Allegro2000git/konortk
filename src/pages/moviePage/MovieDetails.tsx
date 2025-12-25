@@ -54,7 +54,7 @@ export const MovieDetails = () => {
               </NavLinkButton>
             </div>
             <div className={s.meta}>
-              <h5 className={s.release}>Release year: {new Date(data!.release_date).getFullYear()}</h5>
+              <h5 className={s.release}>Release year: {new Date(data?.release_date ?? "").getFullYear()}</h5>
               <span className={`${s.rating} ${ratingStyles[ratingClass]}`}>{rating}</span>
               <span>Runtime: {data?.runtime}m</span>
             </div>

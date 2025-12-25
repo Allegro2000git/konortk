@@ -1,6 +1,6 @@
 import s from "./SelectFilters.module.css";
 import type { ChangeEvent } from "react";
-import type { SortOption } from "@/shared/api/sharedApi.types";
+import type { SortOption } from "@/shared/types";
 
 const sortOptions = [
   { value: "popularity.asc", label: "Popularity ↑" },

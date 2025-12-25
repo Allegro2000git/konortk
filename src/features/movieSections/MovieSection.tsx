@@ -1,7 +1,7 @@
 import s from "./MovieSection.module.css";
-import type { Movie } from "@/features/main/api/movieApi.types";
 import { Link } from "react-router";
 import { MovieCard } from "@/shared/components";
+import type { Movie } from "@/shared/types";
 
 type Props = {
   title: string;

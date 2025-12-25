@@ -11,7 +11,7 @@ export const MainCastList = ({ movieId }: Props) => {
 
   const mainCast = creditsData?.cast.filter((actor) => actor.known_for_department === "Acting").slice(0, 6) || [];
 
-  const getActorPhotoUrl = (path: string) => {
+  const getActorPhotoUrl = (path: string | null) => {
     return path ? `https://image.tmdb.org/t/p/w185${path}` : "https://placehold.co/150x225?text=No+Photo";
   };
 

@@ -1,6 +1,6 @@
 import s from "./GenresList.module.css";
 import { useGetMovieListQuery } from "@/shared/api/sharedApi";
-import type { DiscoverMoviesParams } from "@/shared/api/sharedApi.types";
+import type { DiscoverMoviesParams } from "@/shared/types";
 
 type Props = {
   filters: DiscoverMoviesParams;

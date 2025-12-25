@@ -1,6 +1,5 @@
 import { Link } from "react-router";
 import s from "./MovieCard.module.css";
-import type { Movie } from "@/features/main/api/movieApi.types";
 import ratingStyles from "@/shared/styles/RatingBadge/RatingBadge.module.css";
 import {
   toggleFavoriteAC,
@@ -11,6 +10,7 @@ import * as React from "react";
 import { getRatingClassName } from "@/shared/utils";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks";
 import { memo } from "react";
+import type { Movie } from "@/shared/types";
 
 type MovieCardData = Movie | FavoriteMovie;
 

@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
-import type { DiscoverMoviesParams, SortOption } from "@/shared/api/sharedApi.types";
 import { useSearchParams } from "react-router";
+import type { DiscoverMoviesParams, SortOption } from "@/shared/types";
 
 const DEFAULT_FILTERS: DiscoverMoviesParams = {
   page: 1,
