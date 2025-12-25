@@ -5,6 +5,7 @@ import { useCategoryMovies } from "@/shared/hooks";
 import { MovieCard, NavLinkButton, Pagination } from "@/shared/components";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import type { Movie } from "@/shared/types";
 
 export const CategoryMovies = ({ category }: { category: string }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -37,7 +38,7 @@ export const CategoryMovies = ({ category }: { category: string }) => {
                 <Skeleton width={125} height={20} />
               </div>
             ))
-          : data?.results && data.results.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+          : data?.results && data.results.map((movie: Movie) => <MovieCard key={movie.id} movie={movie} />)}
       </div>
       <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} pagesCount={data?.total_pages || 1} />
     </>

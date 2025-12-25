@@ -15,14 +15,18 @@ export const SimilarMovieList = ({ movieId }: Props) => {
     <section className={s.similar}>
       <h3>Similar Movies</h3>
       <div className={s["similar-grid"]}>
-        {isLoading
-          ? Array.from({ length: 6 }).map((_, index) => (
-              <div key={`skeleton-${index}`}>
-                <Skeleton height={225} style={{ marginBottom: "1rem" }} />
-                <Skeleton width={100} height={20} />
-              </div>
-            ))
-          : similar?.results.slice(0, 6).map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+        {isLoading ? (
+          Array.from({ length: 6 }).map((_, index) => (
+            <div key={`skeleton-${index}`}>
+              <Skeleton height={225} style={{ marginBottom: "1rem" }} />
+              <Skeleton width={100} height={20} />
+            </div>
+          ))
+        ) : similar?.results && similar?.results.length > 0 ? (
+          similar.results.slice(0, 6).map((movie) => <MovieCard key={movie.id} movie={movie} />)
+        ) : (
+          <p>No similar movies</p>
+        )}
       </div>
     </section>
   );

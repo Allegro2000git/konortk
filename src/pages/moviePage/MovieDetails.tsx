@@ -48,7 +48,7 @@ export const MovieDetails = () => {
           <img src={posterUrl} alt={"movie poster"} className={s["poster-info"]} />
           <div>
             <div className={s.top}>
-              <h2 className={s.title}>{data?.title}</h2>
+              <p className={s.title}>{data?.title}</p>
               <NavLinkButton to={""} variant={"category"} onClick={onClickBackHandler}>
                 back
               </NavLinkButton>
