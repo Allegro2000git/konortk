@@ -1,7 +1,7 @@
 import s from "./FilteredMovies.module.css";
 import { useGetSortedMoviesQuery } from "@/shared/api/sharedApi";
 import { useFilters } from "@/shared/hooks";
-import { Filters } from "@/features/filtersAside/Filters";
+import { Filters } from "@/features/filters/Filters";
 import { MovieCard, Pagination } from "@/shared/components";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";

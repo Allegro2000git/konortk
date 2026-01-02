@@ -8,8 +8,8 @@ import "react-loading-skeleton/dist/skeleton.css";
 export function Main() {
   const { data: popularData, isLoading: popularLoading } = useCategoryMovies("popular", { page: 1 });
   const { data: topRatedData, isLoading: topRatedLoading } = useCategoryMovies("top_rated", { page: 1 });
-  const { data: nowPlayingData, isLoading: nowPlayingLoading } = useCategoryMovies("upcoming", { page: 1 });
-  const { data: upcomingData, isLoading: upcomingLoading } = useCategoryMovies("now_playing", { page: 1 });
+  const { data: nowPlayingData, isLoading: nowPlayingLoading } = useCategoryMovies("now_playing", { page: 1 });
+  const { data: upcomingData, isLoading: upcomingLoading } = useCategoryMovies("upcoming", { page: 1 });
   const movieBackdropPath = useMovieBackdropPath(popularData);
 
   const sections = [
